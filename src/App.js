@@ -107,10 +107,44 @@ const App = () => {
           </div>
           <BoxContainer style={{ width: '200px' }}>
             <h2>Score</h2>
-            <ol>
-              <li><dd>Jackson</dd><dl>100</dl></li>
-              <li><dd>Jonas</dd><dl>850</dl></li>
-              <li><dd>Kardashians</dd><dl>0</dl></li>
+            <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+              <li
+                style={{
+                  margin: 0,
+                  padding: 0,
+                  display: 'flex',
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <dd style={{ margin: 0, padding: '0' }}>Jackson</dd>
+                <dl style={{ margin: 0, padding: 0 }}>100</dl>
+              </li>
+              <li
+                style={{
+                  margin: 0,
+                  padding: 0,
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}
+              >
+                <dd style={{ margin: 0, padding: '0' }}>Jonas</dd>
+                <dl style={{ margin: 0, padding: 0 }}>850</dl>
+              </li>
+              <li
+                style={{
+                  margin: 0,
+                  padding: 0,
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}
+              >
+                <dd style={{ margin: 0, padding: '0' }}>
+                  Kardashians
+                </dd>
+                <dl style={{ margin: 0, padding: 0 }}>0</dl>
+              </li>
             </ol>
           </BoxContainer>
         </Div>
