@@ -2,7 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
+import WebFont from 'webfontloader';
 import './base.css'; // eslint-disable-line import/no-unassigned-import
+
+WebFont.load({
+  google: {
+    families: ['Press Start 2P'],
+  },
+});
 
 const render = Component => {
   ReactDOM.render(
