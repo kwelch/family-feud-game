@@ -12,7 +12,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "babel-plugin-captains-log": "^0.5.0",
+    "babel-plugin-captains-log": "^0.6.0",
+    "classnames": "^2.2.5",
     "glamor": "^2.20.24",
     "glamorous": "^3.13.1",
     "polished": "^1.1.1",

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import App from './App';
 import WebFont from 'webfontloader';
+import App from './App';
 import './base.css'; // eslint-disable-line import/no-unassigned-import
 
 WebFont.load({

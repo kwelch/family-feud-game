@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "text": "Name another word for small business",
+    "responses": [
+      {
+        "id": 1,
+        "label": "Ma Pa",
+        "value": 100
+      },
+      {
+        "id": 2,
+        "label": "Independent Business",
+        "value": 43
+      },
+      {
+        "id": 3,
+        "label": "SmallBiz",
+        "value": 2
+      },
+      {
+        "id": 4,
+        "label": "tiny business",
+        "value": 1
+      }
+    ]
+  }
+]
