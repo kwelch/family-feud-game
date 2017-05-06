@@ -195,9 +195,9 @@ const AnswerText = glamorous.span({
 });
 
 const AnswerValue = glamorous.span({
-  width: '15%',
+  width: '50px',
   textAlign: 'center',
-  padding: '1.5rem 1rem',
+  padding: '1.5rem .5rem',
   borderLeft: '2px solid black',
   backgroundColor: 'red',
 });
@@ -214,7 +214,7 @@ const AnswerHidder = glamorous.div(
     alignItems: 'center',
     justifyContent: 'center',
     transitionProperty: 'left',
-    transitionDuration: '1s',
+    transitionDuration: '.7s',
     transitionTimingFunction: 'ease-out',
     transitionDelay: '.5s',
     '&.hide': {
