@@ -8,12 +8,6 @@ import { lighten } from 'polished';
 import classnames from 'classnames';
 import questions from './questions.json';
 
-const teams = [
-  { id: 1, name: 'Jackson', score: 100 },
-  { id: 2, name: 'Jonas', score: 850 },
-  { id: 3, name: 'Kardashians', score: 0 },
-];
-
 const { Div } = glamorous;
 
 const sortByProp = prop => (a, b) => b[prop] - a[prop];
@@ -146,14 +140,20 @@ const TeamList = glamorous.ol({
   padding: 0,
 });
 
-const TeamContainer = glamorous.li({
-  margin: 0,
-  padding: 0,
-  display: 'flex',
-  width: '100%',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-});
+const TeamContainer = glamorous.li(
+  {
+    margin: 0,
+    padding: 0,
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    border: '1px solid white',
+  },
+  ({ isActive }, { colors: { primary } }) => ({
+    borderColor: isActive && primary,
+  }),
+);
 
 const TeamName = glamorous.dd({
   margin: 0,
@@ -165,12 +165,12 @@ const TeamScore = glamorous.dl({
   padding: 0,
 });
 
-const Scoreboard = ({ teams }) => (
+const Scoreboard = ({ teams, activeTeamId }) => (
   <BoxContainer style={{ width: '200px' }}>
     <h2>Score</h2>
     <TeamList>
       {teams.sort(sortByProp('score')).map(t => (
-        <TeamContainer key={t.id}>
+        <TeamContainer key={t.id} isActive={t.id === activeTeamId}>
           <TeamName>{t.name}</TeamName>
           <TeamScore>{t.score}</TeamScore>
         </TeamContainer>
@@ -275,10 +275,102 @@ const QuestionBoard = ({
   );
 };
 
+const AdminScreen = glamorous.div({
+  padding: '2rem',
+  backgroundColor: 'white',
+  border: '1px solid black',
+});
+
+const TeamEditRow = ({
+  name = '',
+  score = 0,
+  onChange,
+  setActive,
+  isActive,
+}) => (
+  <tr>
+    <td>
+      <input name="name" value={name} onChange={onChange} />
+    </td>
+    <td>
+      <input name="score" value={score} onChange={onChange} />
+    </td>
+    <td style={{ display: setActive ? 'auto' : 'none' }}>
+      <input
+        type="checkbox"
+        name="active"
+        checked={isActive}
+        onChange={setActive}
+      />
+    </td>
+  </tr>
+);
+
+const TeamsCRUD = ({ teams = [], updater, setActive, activeTeamId }) => {
+  let newTeamField = null;
+  const teamUpdate = team => ({ target: { name, value } }) => {
+    return updater(
+      Object.assign({}, team, {
+        [name]: value,
+      }),
+    );
+  };
+  const addNewTeam = ({ key }) => {
+    if (key === 'Enter' && newTeamField) {
+      const idList = teams.map(t => t.id);
+      const nextId = Math.max.apply(null, idList) + 1;
+      updater({ id: nextId, name: newTeamField.value, score: 0 });
+      newTeamField.value = '';
+    }
+  };
+  return (
+    <table>
+      <thead>
+        <tr><th colSpan={3}>Team List</th></tr>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Active</th>
+        </tr>
+      </thead>
+      <tbody>
+        {teams.map(team => (
+          <TeamEditRow
+            key={team.id}
+            setActive={setActive(team.id)}
+            onChange={teamUpdate(team)}
+            isActive={activeTeamId === team.id}
+            {...team}
+          />
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>
+            <input
+              name="name"
+              ref={input => {
+                newTeamField = input;
+              }}
+              onKeyPress={addNewTeam}
+            />
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  );
+};
+
 class App extends React.Component {
   state = {
+    activeTeamId: 0,
     currentQuestionIndex: 0,
-    reveledAnswers: [1],
+    reveledAnswers: [],
+    teams: [
+      { id: 1, name: 'Jackson', score: 100 },
+      { id: 2, name: 'Jonas', score: 850 },
+      { id: 3, name: 'Kardashians', score: 0 },
+    ],
   };
 
   revelAnswer = answerId => () => {
@@ -287,7 +379,32 @@ class App extends React.Component {
     }));
   };
 
+  updateTeam = team => {
+    this.setState(({ teams }) => {
+      const teamIndex = teams.findIndex(t => t.id === team.id);
+      if (teamIndex >= 0) {
+        const newTeams = teams.slice();
+        newTeams[teamIndex] = team;
+        return { teams: newTeams };
+      }
+      // id not found add to the end of the list
+      return { teams: [...teams, team] };
+    });
+  };
+
+  setActiveTeam = id => () => {
+    this.setState({
+      activeTeamId: id,
+    });
+  };
+
   render() {
+    const {
+      reveledAnswers,
+      teams,
+      currentQuestionIndex,
+      activeTeamId,
+    } = this.state;
     return (
       <ThemeProvider theme={gameTheme}>
         <Div display="flex" flexDirection="column" alignItems="center">
@@ -295,12 +412,20 @@ class App extends React.Component {
           <Header>Family Feud</Header>
           <GameContainer>
             <QuestionBoard
-              question={questions[this.state.currentQuestionIndex]}
-              reveledAnswers={this.state.reveledAnswers}
+              question={questions[currentQuestionIndex]}
+              reveledAnswers={reveledAnswers}
               answerClick={this.revelAnswer}
             />
-            <Scoreboard teams={teams} />
+            <Scoreboard teams={teams.slice()} activeTeamId={activeTeamId} />
           </GameContainer>
+          <AdminScreen>
+            <TeamsCRUD
+              teams={teams}
+              updater={this.updateTeam}
+              setActive={this.setActiveTeam}
+              activeTeamId={activeTeamId}
+            />
+          </AdminScreen>
         </Div>
       </ThemeProvider>
     );
