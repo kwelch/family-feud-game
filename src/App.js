@@ -42,7 +42,7 @@ const Box = glamorous.div(
     backgroundColor: lighten(0.2, primary),
     borderColor: primary,
     borderWidth: containerBorderSize,
-  }),
+  })
 );
 
 const cornerPos = [
@@ -64,7 +64,7 @@ const Corner = glamorous.div(
     width: containerBorderSize,
     backgroundColor,
     ...pos,
-  }),
+  })
 );
 
 // Define the animation styles
@@ -108,7 +108,7 @@ const AnimatedCorner = glamorous.div(
     width: containerBorderSize,
     backgroundColor: color,
     ...animationStyles({ containerBorderSize }),
-  }),
+  })
 );
 
 const BoxContainer = ({ children, animate = false, ...props }) => {
@@ -150,7 +150,7 @@ const TeamContainer = glamorous.li(
   },
   ({ isActive }, { colors: { primary } }) => ({
     borderColor: isActive && primary,
-  }),
+  })
 );
 
 const TeamName = glamorous.dd({
@@ -221,7 +221,7 @@ const AnswerHidder = glamorous.div(
   },
   (_, { colors: { primary } }) => ({
     backgroundColor: lighten(0.5, primary),
-  }),
+  })
 );
 
 const PositionIndicator = glamorous.div({});
@@ -296,7 +296,7 @@ const TeamsCRUD = ({ teams = [], updater, setActive, activeTeamId }) => {
     return updater(
       Object.assign({}, team, {
         [name]: value,
-      }),
+      })
     );
   };
   const addNewTeam = ({ key }) => {
