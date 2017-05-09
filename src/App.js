@@ -115,9 +115,7 @@ const BoxContainer = ({ children, animate = false, ...props }) => {
   return (
     <glamorous.Div position="relative">
       {[
-        ...Array.from({ length: 4 }).map((v, i) => (
-          <Corner key={i} pos={cornerPos[i]} />
-        )),
+        ...Array.from({ length: 4 }).map((v, i) => <Corner key={i} pos={cornerPos[i]} />),
         animate && <AnimatedCorner color="blue" />,
       ]}
       <Box {...props}>
@@ -248,28 +246,25 @@ const QuestionBoardContainer = glamorous.div({
   alignItems: 'center',
 });
 
-const QuestionBoard = ({
-  reveledAnswers = [],
-  answerClick,
-  question: { text, responses },
-}) => {
+const QuestionBoard = ({ reveledAnswers = [], answerClick, question: { id, text, responses } }) => {
   return (
     <QuestionBoardContainer>
       <BoxContainer>
         {text}
       </BoxContainer>
       <Div>
-        {responses
-          .sort(sortByProp('value'))
-          .map((response, idx) => (
+        {responses.sort(sortByProp('value')).map((response, idx) => {
+          const respId = `${id}_${idx}`;
+          return (
             <AnswerContainer
-              key={response.id}
-              onClick={answerClick(response.id)}
-              isReveled={reveledAnswers.includes(response.id)}
+              key={respId}
+              onClick={answerClick(respId)}
+              isReveled={reveledAnswers.includes(respId)}
               position={idx + 1}
               {...response}
             />
-          ))}
+          );
+        })}
       </Div>
     </QuestionBoardContainer>
   );
@@ -281,13 +276,7 @@ const AdminScreen = glamorous.div({
   border: '1px solid black',
 });
 
-const TeamEditRow = ({
-  name = '',
-  score = 0,
-  onChange,
-  setActive,
-  isActive,
-}) => (
+const TeamEditRow = ({ name = '', score = 0, onChange, setActive, isActive }) => (
   <tr>
     <td>
       <input name="name" value={name} onChange={onChange} />
@@ -296,12 +285,7 @@ const TeamEditRow = ({
       <input name="score" value={score} onChange={onChange} />
     </td>
     <td style={{ display: setActive ? 'auto' : 'none' }}>
-      <input
-        type="checkbox"
-        name="active"
-        checked={isActive}
-        onChange={setActive}
-      />
+      <input type="checkbox" name="active" checked={isActive} onChange={setActive} />
     </td>
   </tr>
 );
@@ -367,28 +351,46 @@ class App extends React.Component {
     currentQuestionIndex: 0,
     reveledAnswers: [],
     teams: [
-      { id: 1, name: 'Jackson', score: 100 },
-      { id: 2, name: 'Jonas', score: 850 },
+      { id: 1, name: 'Jackson', score: 0 },
+      { id: 2, name: 'Jonas', score: 0 },
       { id: 3, name: 'Kardashians', score: 0 },
     ],
   };
 
+  replaceTeamInList = ({ teams }) => team => {
+    const teamIndex = teams.findIndex(t => t.id === team.id);
+    if (teamIndex >= 0) {
+      const newTeams = teams.slice();
+      newTeams[teamIndex] = team;
+      return { teams: newTeams };
+    }
+    // id not found add to the end of the list
+    return { teams: [...teams, team] };
+  };
+
+  addScoreToActiveTeam = ({ teams, activeTeamId }) => score => {
+    const activeTeam = teams.find(t => t.id === activeTeamId);
+    return Object.assign({}, activeTeam, { score: activeTeam.score + score });
+  };
+
   revelAnswer = answerId => () => {
-    this.setState(prevState => ({
-      reveledAnswers: [...prevState.reveledAnswers, answerId],
-    }));
+    const id = answerId.split('_');
+    // fuzzy search since id is array of strings and q.id is number
+    const question = questions.find(q => q.id == id[0]); // eslint-disable-line eqeqeq
+    const answer = question.responses.sort(sortByProp('value'))[id[1]];
+
+    this.setState(prevState => {
+      const updatedActiveTeam = this.addScoreToActiveTeam(prevState)(answer.value);
+      return {
+        ...this.replaceTeamInList(prevState)(updatedActiveTeam),
+        reveledAnswers: [...prevState.reveledAnswers, answerId],
+      };
+    });
   };
 
   updateTeam = team => {
     this.setState(({ teams }) => {
-      const teamIndex = teams.findIndex(t => t.id === team.id);
-      if (teamIndex >= 0) {
-        const newTeams = teams.slice();
-        newTeams[teamIndex] = team;
-        return { teams: newTeams };
-      }
-      // id not found add to the end of the list
-      return { teams: [...teams, team] };
+      this.replaceTeamInList({ teams })(team);
     });
   };
 
@@ -399,12 +401,7 @@ class App extends React.Component {
   };
 
   render() {
-    const {
-      reveledAnswers,
-      teams,
-      currentQuestionIndex,
-      activeTeamId,
-    } = this.state;
+    const { reveledAnswers, teams, currentQuestionIndex, activeTeamId } = this.state;
     return (
       <ThemeProvider theme={gameTheme}>
         <Div display="flex" flexDirection="column" alignItems="center">
