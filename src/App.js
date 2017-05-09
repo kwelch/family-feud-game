@@ -246,7 +246,7 @@ const QuestionBoardContainer = glamorous.div({
   alignItems: 'center',
 });
 
-const QuestionBoard = ({ reveledAnswers = [], answerClick, question: { id, text, responses } }) => {
+const QuestionBoard = ({ reveledAnswers = [], answerClick, question: { id, text, responses = [] } = {} }) => {
   return (
     <QuestionBoardContainer>
       <BoxContainer>
@@ -276,19 +276,24 @@ const AdminScreen = glamorous.div({
   border: '1px solid black',
 });
 
-const TeamEditRow = ({ name = '', score = 0, onChange, setActive, isActive }) => (
-  <tr>
-    <td>
-      <input name="name" value={name} onChange={onChange} />
-    </td>
-    <td>
-      <input name="score" value={score} onChange={onChange} />
-    </td>
-    <td style={{ display: setActive ? 'auto' : 'none' }}>
-      <input type="checkbox" name="active" checked={isActive} onChange={setActive} />
-    </td>
-  </tr>
-);
+const TeamEditRow = ({ name = '', score = 0, onChange, setActive, isActive }) => {
+  const scoreUpdate = ({ target: { value } }) => {
+    return onChange({ target: { name: 'score', value: Number(value) } });
+  };
+  return (
+    <tr>
+      <td>
+        <input name="name" value={name} onChange={onChange} />
+      </td>
+      <td>
+        <input name="score" value={score} onChange={scoreUpdate} />
+      </td>
+      <td style={{ display: setActive ? 'auto' : 'none' }}>
+        <input type="checkbox" name="active" checked={isActive} onChange={setActive} />
+      </td>
+    </tr>
+  );
+};
 
 const TeamsCRUD = ({ teams = [], updater, setActive, activeTeamId }) => {
   let newTeamField = null;
@@ -345,11 +350,41 @@ const TeamsCRUD = ({ teams = [], updater, setActive, activeTeamId }) => {
   );
 };
 
+const QuestionAdmin = ({
+  question: { id, text, responses = [] } = {},
+  reveledAnswers = [],
+  showAllAnswers,
+  answerClick,
+}) => {
+  return (
+    <div>
+      <h2>{text}</h2>
+      <ul>
+        {responses.sort(sortByProp('value')).map((resp, i) => {
+          const respId = `${id}_${i}`;
+          return (
+            <li key={respId} onClick={answerClick(respId)} isActive={reveledAnswers.includes(respId)}>
+              <span>{resp.label}</span>
+              <span>{resp.value}</span>
+            </li>
+          );
+        })}
+      </ul>
+      <button onClick={showAllAnswers}>Reveal All</button>
+    </div>
+  );
+};
+
+const randomNumberBetween = (low, high) => {
+  return Math.floor(Math.random() * high) + low;
+};
+
 class App extends React.Component {
   state = {
     activeTeamId: 0,
-    currentQuestionIndex: 0,
+    currentQuestionId: 0,
     reveledAnswers: [],
+    usedQuestions: [],
     teams: [
       { id: 1, name: 'Jackson', score: 0 },
       { id: 2, name: 'Jonas', score: 0 },
@@ -358,6 +393,9 @@ class App extends React.Component {
   };
 
   replaceTeamInList = ({ teams }) => team => {
+    if (!team) {
+      return teams;
+    }
     const teamIndex = teams.findIndex(t => t.id === team.id);
     if (teamIndex >= 0) {
       const newTeams = teams.slice();
@@ -370,7 +408,10 @@ class App extends React.Component {
 
   addScoreToActiveTeam = ({ teams, activeTeamId }) => score => {
     const activeTeam = teams.find(t => t.id === activeTeamId);
-    return Object.assign({}, activeTeam, { score: activeTeam.score + score });
+    if (activeTeam) {
+      return Object.assign({}, activeTeam, { score: activeTeam.score + score });
+    }
+    return null;
   };
 
   revelAnswer = answerId => () => {
@@ -388,9 +429,18 @@ class App extends React.Component {
     });
   };
 
+  showAllAnswers = () => {
+    this.setState(({ currentQuestionId, reveledAnswers }) => {
+      const question = questions.find(q => q.id === currentQuestionId);
+      return {
+        reveledAnswers: [...reveledAnswers, ...question.responses.map((_, i) => `${question.id}_${i}`)],
+      };
+    });
+  };
+
   updateTeam = team => {
     this.setState(({ teams }) => {
-      this.replaceTeamInList({ teams })(team);
+      return this.replaceTeamInList({ teams })(team);
     });
   };
 
@@ -400,19 +450,33 @@ class App extends React.Component {
     });
   };
 
+  showNextQuestion = () => {
+    const questionIdList = questions.map(q => q.id);
+    const lowerBound = Math.floor.apply(null, questionIdList);
+    const upperBound = Math.max.apply(null, questionIdList);
+
+    this.setState(({ usedQuestions }) => {
+      let newQuestionId = 0;
+      do {
+        newQuestionId = randomNumberBetween(lowerBound, upperBound);
+      } while (usedQuestions.includes(newQuestionId));
+      return {
+        currentQuestionId: newQuestionId,
+        usedQuestions: [...usedQuestions, newQuestionId],
+      };
+    });
+  };
+
   render() {
-    const { reveledAnswers, teams, currentQuestionIndex, activeTeamId } = this.state;
+    const { reveledAnswers, teams, currentQuestionId, activeTeamId } = this.state;
+    const currentQuestion = questions.find(q => q.id === currentQuestionId);
     return (
       <ThemeProvider theme={gameTheme}>
         <Div display="flex" flexDirection="column" alignItems="center">
           <Title render="Family Feud" />
           <Header>Family Feud</Header>
           <GameContainer>
-            <QuestionBoard
-              question={questions[currentQuestionIndex]}
-              reveledAnswers={reveledAnswers}
-              answerClick={this.revelAnswer}
-            />
+            <QuestionBoard question={currentQuestion} reveledAnswers={reveledAnswers} answerClick={this.revelAnswer} />
             <Scoreboard teams={teams.slice()} activeTeamId={activeTeamId} />
           </GameContainer>
           <AdminScreen>
@@ -422,6 +486,13 @@ class App extends React.Component {
               setActive={this.setActiveTeam}
               activeTeamId={activeTeamId}
             />
+            <QuestionAdmin
+              question={currentQuestion}
+              reveledAnswers={reveledAnswers}
+              showAllAnswers={this.showAllAnswers}
+              answerClick={this.revelAnswer}
+            />
+            <button onClick={this.showNextQuestion}>Next Question</button>
           </AdminScreen>
         </Div>
       </ThemeProvider>
