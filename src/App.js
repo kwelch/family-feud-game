@@ -126,6 +126,7 @@ const BoxContainer = ({ children, animate = false, ...props }) => {
 };
 
 const GameContainer = glamorous.div({
+  position: 'relative',
   display: 'flex',
   width: '100%',
   justifyContent: 'space-around',
@@ -379,6 +380,29 @@ const randomNumberBetween = (low, high) => {
   return Math.floor(Math.random() * high) + low;
 };
 
+const XContainer = glamorous.span({
+  fontSize: '3rem',
+  color: 'red',
+  padding: '1.2rem',
+});
+
+const BigX = ({ count = 1 }) => {
+  return (
+    <Div
+      position="absolute"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100%"
+      width="100%"
+      top={0}
+      left={0}
+    >
+      {Array.from({ length: count }).map((_, i) => <XContainer key={i}>X</XContainer>)}
+    </Div>
+  );
+};
+
 class App extends React.Component {
   state = {
     activeTeamId: 0,
@@ -478,6 +502,7 @@ class App extends React.Component {
           <GameContainer>
             <QuestionBoard question={currentQuestion} reveledAnswers={reveledAnswers} answerClick={this.revelAnswer} />
             <Scoreboard teams={teams.slice()} activeTeamId={activeTeamId} />
+            <BigX count={3} />
           </GameContainer>
           <AdminScreen>
             <TeamsCRUD
