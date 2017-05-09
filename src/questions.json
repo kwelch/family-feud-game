@@ -1,27 +1,1277 @@
 [
   {
     "id": 1,
-    "text": "Name another word for small business",
+    "text": "Name a bad sport for someone who is afraid of the water.",
     "responses": [
       {
-        "id": 1,
-        "label": "Ma Pa Shop",
-        "value": 54
+        "label": "Swimming",
+        "value": 33
       },
       {
-        "id": 2,
-        "label": "Independent Business",
-        "value": 43
+        "label": "Water Polo",
+        "value": 21
       },
       {
-        "id": 3,
-        "label": "SmallBiz",
+        "label": "Water Skiing",
+        "value": 17
+      },
+      {
+        "label": "Diving",
+        "value": 11
+      },
+      {
+        "label": "Scuba",
+        "value": 6
+      },
+      {
+        "label": "Surfing",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "text": "Name a word that most people yell at their dogs.",
+    "responses": [
+      {
+        "label": "No",
+        "value": 27
+      },
+      {
+        "label": "Sit",
+        "value": 23
+      },
+      {
+        "label": "Stop",
+        "value": 14
+      },
+      {
+        "label": "Down",
+        "value": 7
+      },
+      {
+        "label": "Fetch",
+        "value": 6
+      },
+      {
+        "label": "Bad",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "text": "Name an animal we eat that would never eat us.",
+    "responses": [
+      {
+        "label": "Cow",
+        "value": 58
+      },
+      {
+        "label": "Chicken",
+        "value": 26
+      },
+      {
+        "label": "Pig",
+        "value": 4
+      },
+      {
+        "label": "Rabbit",
+        "value": 3
+      },
+      {
+        "label": "Deer",
         "value": 2
       },
       {
-        "id": 4,
-        "label": "tiny business",
-        "value": 1
+        "label": "Sheep",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "text": "Name a fruit you rarely buy just one of.",
+    "responses": [
+      {
+        "label": "Grapes",
+        "value": 44
+      },
+      {
+        "label": "Strawberry",
+        "value": 14
+      },
+      {
+        "label": "Cherry",
+        "value": 13
+      },
+      {
+        "label": "Banana",
+        "value": 12
+      },
+      {
+        "label": "Orange",
+        "value": 8
+      },
+      {
+        "label": "Apple",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "text": "Name a holiday that people wear special colors for",
+    "responses": [
+      {
+        "label": "Christmas",
+        "value": 51
+      },
+      {
+        "label": "St. Patrick's Day",
+        "value": 28
+      },
+      {
+        "label": "Fourth of July",
+        "value": 12
+      },
+      {
+        "label": "Easter",
+        "value": 3
+      },
+      {
+        "label": "Halloween",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "text": "Name something you do to keep burglars out of your house that does not seem to work on the Tooth Fairy or Santa Clause.",
+    "responses": [
+      {
+        "label": "Security Alarm",
+        "value": 37
+      },
+      {
+        "label": "Locks",
+        "value": 27
+      },
+      {
+        "label": "Window Bars",
+        "value": 15
+      },
+      {
+        "label": "Dogs",
+        "value": 14
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "text": "Name something a robber would hate to have happen to his car while he was inside robbing a bank.",
+    "responses": [
+      {
+        "label": "Stolen",
+        "value": 29
+      },
+      {
+        "label": "Towed",
+        "value": 20
+      },
+      {
+        "label": "Not Start",
+        "value": 15
+      },
+      {
+        "label": "Ticketed",
+        "value": 9
+      },
+      {
+        "label": "Accident",
+        "value": 8
+      },
+      {
+        "label": "Slashed Tires",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "text": "Name a wild animal you would find living in cities.",
+    "responses": [
+      {
+        "label": "Rats",
+        "value": 24
+      },
+      {
+        "label": "Raccoon",
+        "value": 21
+      },
+      {
+        "label": "Deer",
+        "value": 5
+      },
+      {
+        "label": "Skunks",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "text": "Name a sport that gets fans into a frenzy.",
+    "responses": [
+      {
+        "label": "Hockey",
+        "value": 25
+      },
+      {
+        "label": "Football",
+        "value": 22
+      },
+      {
+        "label": "Baseball",
+        "value": 10
+      },
+      {
+        "label": "Basketball",
+        "value": 9
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "text": "Name an object young children sleep with.",
+    "responses": [
+      {
+        "label": "Stuffed animal",
+        "value": 47
+      },
+      {
+        "label": "Blanket",
+        "value": 30
+      },
+      {
+        "label": "Pacifier",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "text": "Name something a Ken doll has that the average guy probably wishes he had too.",
+    "responses": [
+      {
+        "label": "Barbie",
+        "value": 32
+      },
+      {
+        "label": "Muscles",
+        "value": 29
+      },
+      {
+        "label": "Convertible",
+        "value": 10
+      },
+      {
+        "label": "Handsome",
+        "value": 8
+      },
+      {
+        "label": "Hair",
+        "value": 7
+      },
+      {
+        "label": "Tan",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "text": "Name something a little kid might do on the furniture that would upset his parents.",
+    "responses": [
+      {
+        "label": "Jump",
+        "value": 40
+      },
+      {
+        "label": "Pee",
+        "value": 14
+      },
+      {
+        "label": "Draw",
+        "value": 13
+      },
+      {
+        "label": "Spill",
+        "value": 13
+      },
+      {
+        "label": "Eat",
+        "value": 11
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "text": "When Hugh Hefner dies name something he might wish to be buried with.",
+    "responses": [
+      {
+        "label": "Playboy Bunnies",
+        "value": 55
+      },
+      {
+        "label": "Money",
+        "value": 20
+      },
+      {
+        "label": "Bathrobe",
+        "value": 9
+      },
+      {
+        "label": "Calendar",
+        "value": 7
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "text": "Name something people file.",
+    "responses": [
+      {
+        "label": "Taxes",
+        "value": 35
+      },
+      {
+        "label": "Papers",
+        "value": 30
+      },
+      {
+        "label": "Nails",
+        "value": 25
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "text": "Name a kind of test.",
+    "responses": [
+      {
+        "label": "SAT",
+        "value": 29
+      },
+      {
+        "label": "Driving",
+        "value": 15
+      },
+      {
+        "label": "IQ",
+        "value": 13
+      },
+      {
+        "label": "Drug",
+        "value": 11
+      },
+      {
+        "label": "Blood",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "text": "Name a word that starts with Tooth.",
+    "responses": [
+      {
+        "label": "Toothbrush",
+        "value": 29
+      },
+      {
+        "label": "Tooth Fairy",
+        "value": 23
+      },
+      {
+        "label": "Toothpaste",
+        "value": 18
+      },
+      {
+        "label": "Tooth-ache",
+        "value": 12
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "text": "Name a safety device you would find on a car.",
+    "responses": [
+      {
+        "label": "Seat belts",
+        "value": 40
+      },
+      {
+        "label": "Airbags",
+        "value": 38
+      },
+      {
+        "label": "Alarm",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "text": "Name something in a person's house that stays on all night long.",
+    "responses": [
+      {
+        "label": "Refrigerator",
+        "value": 22
+      },
+      {
+        "label": "Clock",
+        "value": 20
+      },
+      {
+        "label": "Heating/Cooling",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "text": "Name a piece of information you would expect to be printed on a business card.",
+    "responses": [
+      {
+        "label": "Company Name",
+        "value": 42
+      },
+      {
+        "label": "Person's Name",
+        "value": 28
+      },
+      {
+        "label": "Phone Number",
+        "value": 15
+      },
+      {
+        "label": "Email Address",
+        "value": 11
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "text": "Name a reason why a baby might be cranky.",
+    "responses": [
+      {
+        "label": "Hungry",
+        "value": 35
+      },
+      {
+        "label": "Tired",
+        "value": 32
+      },
+      {
+        "label": "Dirty Diaper",
+        "value": 25
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "text": "Name something you might take with you for an overnight stay at the hospital.",
+    "responses": [
+      {
+        "label": "Pajamas",
+        "value": 29
+      },
+      {
+        "label": "Clothing",
+        "value": 18
+      },
+      {
+        "label": "Toothbrush",
+        "value": 17
+      },
+      {
+        "label": "Robe",
+        "value": 12
+      },
+      {
+        "label": "Book",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "text": "Name something that is better when it is hot.",
+    "responses": [
+      {
+        "label": "Coffee",
+        "value": 30
+      },
+      {
+        "label": "Soup",
+        "value": 17
+      },
+      {
+        "label": "Pizza",
+        "value": 11
+      },
+      {
+        "label": "Tea",
+        "value": 6
+      },
+      {
+        "label": "Cocoa",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "text": "Name something people do to get on their boss' good side.",
+    "responses": [
+      {
+        "label": "Kiss Up",
+        "value": 36
+      },
+      {
+        "label": "Work Extra",
+        "value": 13
+      },
+      {
+        "label": "Compliment",
+        "value": 10
+      },
+      {
+        "label": "Always Agree",
+        "value": 8
+      },
+      {
+        "label": "Get Coffee",
+        "value": 6
+      },
+      {
+        "label": "Buy Lunch",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "text": " Name something you get at the dentist that almost makes the trip worthwhile.",
+    "responses": [
+      {
+        "label": "Toothbrush",
+        "value": 50
+      },
+      {
+        "label": "Clean teeth",
+        "value": 13
+      },
+      {
+        "label": "Sticker",
+        "value": 8
+      },
+      {
+        "label": "Laughing gas",
+        "value": 7
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "text": "Tell me something you only do when you’re sick",
+    "responses": [
+      {
+        "label": "Nap",
+        "value": 37
+      },
+      {
+        "label": "Vomit",
+        "value": 34
+      },
+      {
+        "label": "Take medicine",
+        "value": 14
+      },
+      {
+        "label": "Eat soup",
+        "value": 8
+      },
+      {
+        "label": "Home from work",
+        "value": 3
+      },
+      {
+        "label": "Go to the doctor",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "text": "Name something people consider snack food",
+    "responses": [
+      {
+        "label": "Chips",
+        "value": 51
+      },
+      {
+        "label": "Popcorn",
+        "value": 12
+      },
+      {
+        "label": "Peanuts",
+        "value": 10
+      },
+      {
+        "label": "Pretzels",
+        "value": 7
+      },
+      {
+        "label": "Fruit",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "text": "Name something parents tell their children not to waste",
+    "responses": [
+      {
+        "label": "Food",
+        "value": 53
+      },
+      {
+        "label": "Money",
+        "value": 17
+      },
+      {
+        "label": "Water",
+        "value": 14
+      },
+      {
+        "label": "Electricity",
+        "value": 4
+      },
+      {
+        "label": "Time",
+        "value": 3
+      },
+      {
+        "label": "Life",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "text": "What do you call someone who is careful with money",
+    "responses": [
+      {
+        "label": "Cheap",
+        "value": 31
+      },
+      {
+        "label": "Stingy",
+        "value": 21
+      },
+      {
+        "label": "Tight",
+        "value": 15
+      },
+      {
+        "label": "Penny Pincher",
+        "value": 12
+      },
+      {
+        "label": "Frugal",
+        "value": 8
+      },
+      {
+        "label": "Scrooge",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "text": "Name a fruit that is delicious to eat but hard to break into",
+    "responses": [
+      {
+        "label": "Coconut",
+        "value": 27
+      },
+      {
+        "label": "Pineapple",
+        "value": 26
+      },
+      {
+        "label": "Watermelon",
+        "value": 22
+      },
+      {
+        "label": "Cantaloupe",
+        "value": 11
+      },
+      {
+        "label": "Pomegranate",
+        "value": 9
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "text": "Name something you associate with British people",
+    "responses": [
+      {
+        "label": "English Accent",
+        "value": 44
+      },
+      {
+        "label": "Drinking Tea",
+        "value": 12
+      },
+      {
+        "label": "The Royal Family",
+        "value": 11
+      },
+      {
+        "label": "Flag",
+        "value": 10
+      },
+      {
+        "label": "Fish and Chips",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "text": "Name something that you wear that covers your ears",
+    "responses": [
+      {
+        "label": "Earmuff",
+        "value": 50
+      },
+      {
+        "label": "Hat",
+        "value": 35
+      },
+      {
+        "label": "Headphones",
+        "value": 5
+      },
+      {
+        "label": "Scarf",
+        "value": 4
+      },
+      {
+        "label": "Hood",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "text": "Name a job where you can act like a kid",
+    "responses": [
+      {
+        "label": "Clown",
+        "value": 64
+      },
+      {
+        "label": "Kindergarten teacher",
+        "value": 11
+      },
+      {
+        "label": "Daycare provider",
+        "value": 8
+      },
+      {
+        "label": "Actor",
+        "value": 6
+      },
+      {
+        "label": "Toy store employee",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "text": "Name a way you can tell someone is a doctor just by looking at them",
+    "responses": [
+      {
+        "label": "Stethoscope",
+        "value": 39
+      },
+      {
+        "label": "White Coat",
+        "value": 28
+      },
+      {
+        "label": "Scrubs",
+        "value": 19
+      },
+      {
+        "label": "ID photo",
+        "value": 9
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "text": "We asked 100 women: What might a man do for you on a first date that would make you think he was husband material",
+    "responses": [
+      {
+        "label": "Open door",
+        "value": 51
+      },
+      {
+        "label": "Pay",
+        "value": 24
+      },
+      {
+        "label": "Bring Flowers",
+        "value": 15
+      },
+      {
+        "label": "Cook Dinner",
+        "value": 9
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "text": "Name a food that often comes free with your meal at a restaurant",
+    "responses": [
+      {
+        "label": "Bread",
+        "value": 57
+      },
+      {
+        "label": "Salad",
+        "value": 19
+      },
+      {
+        "label": "French fries",
+        "value": 18
+      },
+      {
+        "label": "Soup",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "text": "Name something you shouldn’t do when a cop pulls you over",
+    "responses": [
+      {
+        "label": "Drive away",
+        "value": 28
+      },
+      {
+        "label": "Talk back",
+        "value": 22
+      },
+      {
+        "label": "Swear",
+        "value": 14
+      },
+      {
+        "label": "Get out of the car",
+        "value": 11
+      },
+      {
+        "label": "Laugh",
+        "value": 7
+      },
+      {
+        "label": "Cry",
+        "value": 7
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "text": "After a week of camping, what luxury of home are you most excited to have again",
+    "responses": [
+      {
+        "label": "Bed",
+        "value": 35
+      },
+      {
+        "label": "Shower",
+        "value": 25
+      },
+      {
+        "label": "TV",
+        "value": 13
+      },
+      {
+        "label": "Toilet",
+        "value": 11
+      },
+      {
+        "label": "Electricity",
+        "value": 4
+      },
+      {
+        "label": "Air Conditioning",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "text": "Name something that you don’t wash as often as you probably should",
+    "responses": [
+      {
+        "label": "Car",
+        "value": 39
+      },
+      {
+        "label": "Hands",
+        "value": 19
+      },
+      {
+        "label": "Hair",
+        "value": 14
+      },
+      {
+        "label": "Sheets",
+        "value": 10
+      },
+      {
+        "label": "Clothes",
+        "value": 6
+      },
+      {
+        "label": "Ears",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "text": "Name something you hope doesn’t break while you’re inside it",
+    "responses": [
+      {
+        "label": "Car",
+        "value": 53
+      },
+      {
+        "label": "Elevator",
+        "value": 26
+      },
+      {
+        "label": "Plane",
+        "value": 13
+      },
+      {
+        "label": "Roller coaster",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "text": "Name something a kid in high school might do that would get him/her labeled as a “nerd”",
+    "responses": [
+      {
+        "label": "Glasses/clothes",
+        "value": 48
+      },
+      {
+        "label": "Bad at sports",
+        "value": 20
+      },
+      {
+        "label": "Smart",
+        "value": 13
+      },
+      {
+        "label": "Study too much",
+        "value": 11
+      },
+      {
+        "label": "Play chess",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "text": "Name something around the house that your family members use the last of and don’t replace",
+    "responses": [
+      {
+        "label": "Toilet paper",
+        "value": 46
+      },
+      {
+        "label": "Milk",
+        "value": 33
+      },
+      {
+        "label": "Tissue",
+        "value": 7
+      },
+      {
+        "label": "Toothpaste",
+        "value": 7
+      },
+      {
+        "label": "Soap",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "text": "Name something specific that teenagers do that makes their parents angry",
+    "responses": [
+      {
+        "label": "Smoke",
+        "value": 32
+      },
+      {
+        "label": "Lie",
+        "value": 22
+      },
+      {
+        "label": "Drink",
+        "value": 19
+      },
+      {
+        "label": "Break Curfew",
+        "value": 12
+      },
+      {
+        "label": "Talk back",
+        "value": 7
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "text": "What sport would you want to take up if you like being upside down",
+    "responses": [
+      {
+        "label": "Gymnastics",
+        "value": 46
+      },
+      {
+        "label": "Diving",
+        "value": 18
+      },
+      {
+        "label": "Trapeze",
+        "value": 11
+      },
+      {
+        "label": "Bungee jumping",
+        "value": 10
+      },
+      {
+        "label": "Skydiving",
+        "value": 9
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "text": "Name something that might be lying on a teenager’s floor",
+    "responses": [
+      {
+        "label": "Clothes",
+        "value": 39
+      },
+      {
+        "label": "Shoes",
+        "value": 18
+      },
+      {
+        "label": "Books",
+        "value": 18
+      },
+      {
+        "label": "Food",
+        "value": 12
+      },
+      {
+        "label": "Trash",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "text": "Name something you would be afraid to do by yourself",
+    "responses": [
+      {
+        "label": "Travel",
+        "value": 43
+      },
+      {
+        "label": "Skydive",
+        "value": 16
+      },
+      {
+        "label": "Sleep",
+        "value": 12
+      },
+      {
+        "label": "Swim",
+        "value": 10
+      },
+      {
+        "label": "Walk at night",
+        "value": 8
+      },
+      {
+        "label": "Watch a scary movie",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "text": "Which website could you not go a day without visiting",
+    "responses": [
+      {
+        "label": "Facebook",
+        "value": 51
+      },
+      {
+        "label": "Google",
+        "value": 24
+      },
+      {
+        "label": "Snapchat",
+        "value": 10
+      },
+      {
+        "label": "Yahoo",
+        "value": 8
+      },
+      {
+        "label": "Instagram",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "text": "Name a decision that people don’t take lightly",
+    "responses": [
+      {
+        "label": "Marriage",
+        "value": 61
+      },
+      {
+        "label": "Divorce",
+        "value": 12
+      },
+      {
+        "label": "Buying a house",
+        "value": 11
+      },
+      {
+        "label": "Having kids",
+        "value": 8
+      },
+      {
+        "label": "Accepting a job",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "text": "Name something that becomes more active at night",
+    "responses": [
+      {
+        "label": "Bats",
+        "value": 44
+      },
+      {
+        "label": "Owls",
+        "value": 24
+      },
+      {
+        "label": "Nightclubs",
+        "value": 8
+      },
+      {
+        "label": "Bugs",
+        "value": 7
+      },
+      {
+        "label": "Criminal Behavior",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "text": "Name a bird you would never think of eating",
+    "responses": [
+      {
+        "label": "Crow",
+        "value": 23
+      },
+      {
+        "label": "Pigeon",
+        "value": 20
+      },
+      {
+        "label": "Robin",
+        "value": 17
+      },
+      {
+        "label": "Eagle",
+        "value": 13
+      },
+      {
+        "label": "Peacock",
+        "value": 9
+      },
+      {
+        "label": "Parrot",
+        "value": 7
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "text": "Name a reason someone might honk at you",
+    "responses": [
+      {
+        "label": "Cut them off",
+        "value": 54
+      },
+      {
+        "label": "To slow",
+        "value": 25
+      },
+      {
+        "label": "Green light",
+        "value": 7
+      },
+      {
+        "label": "They know you",
+        "value": 6
+      },
+      {
+        "label": "Flirting",
+        "value": 5
       }
     ]
   }
