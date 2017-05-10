@@ -68,7 +68,7 @@ const Corner = glamorous.div(
 );
 
 // Define the animation styles
-const animationStyles = ({ containerBorderSize }) => {
+const fourCornerAnimation = ({ containerBorderSize }) => {
   const runner = css.keyframes({
     '0%': { left: '0%', top: '0%', marginLeft: 0, marginTop: 0 },
     '25%': {
@@ -94,6 +94,21 @@ const animationStyles = ({ containerBorderSize }) => {
   return { animation: `${runner} 6s infinite linear` };
 };
 
+const fadeOutAnimation = ({
+  duration,
+  timing = 'ease-in',
+  delay = '0s',
+  count = 1,
+  direction = 'normal',
+  fillMode = 'forwards',
+}) => {
+  const keyframes = css.keyframes({
+    '0%': { opacity: 1 },
+    '100%': { opacity: 0 },
+  });
+  return { animation: `${keyframes} ${duration} ${timing} ${delay} ${count} ${direction} ${fillMode}` };
+};
+
 const AnimatedCorner = glamorous.div(
   {
     display: 'block',
@@ -107,7 +122,7 @@ const AnimatedCorner = glamorous.div(
     height: containerBorderSize,
     width: containerBorderSize,
     backgroundColor: color,
-    ...animationStyles({ containerBorderSize }),
+    ...fourCornerAnimation({ containerBorderSize }),
   })
 );
 
@@ -386,20 +401,23 @@ const XContainer = glamorous.span({
   padding: '1.2rem',
 });
 
+const FadedContainer = glamorous.div({
+  ...fadeOutAnimation({ duration: '1s', delay: '2s' }),
+  position: 'absolute',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  width: '100%',
+  top: 0,
+  left: 0,
+});
+
 const BigX = ({ count = 1 }) => {
   return (
-    <Div
-      position="absolute"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100%"
-      width="100%"
-      top={0}
-      left={0}
-    >
-      {Array.from({ length: count }).map((_, i) => <XContainer key={i}>X</XContainer>)}
-    </Div>
+    <FadedContainer style={{ animationPlayState: 'running' }}>
+      {Array.from({ length: count }).map(() => <XContainer>X</XContainer>)}
+    </FadedContainer>
   );
 };
 
@@ -409,6 +427,7 @@ class App extends React.Component {
     currentQuestionId: 0,
     reveledAnswers: [],
     usedQuestions: [],
+    xCount: 0,
     teams: [
       { id: 1, name: 'Jackson', score: 0 },
       { id: 2, name: 'Jonas', score: 0 },
@@ -486,13 +505,20 @@ class App extends React.Component {
       } while (usedQuestions.includes(newQuestionId));
       return {
         currentQuestionId: newQuestionId,
+        xCount: 0,
         usedQuestions: [...usedQuestions, newQuestionId],
       };
     });
   };
 
+  showX = count => () => {
+    this.setState({
+      xCount: count,
+    });
+  };
+
   render() {
-    const { reveledAnswers, teams, currentQuestionId, activeTeamId } = this.state;
+    const { reveledAnswers, teams, currentQuestionId, activeTeamId, xCount } = this.state;
     const currentQuestion = questions.find(q => q.id === currentQuestionId);
     return (
       <ThemeProvider theme={gameTheme}>
@@ -502,7 +528,7 @@ class App extends React.Component {
           <GameContainer>
             <QuestionBoard question={currentQuestion} reveledAnswers={reveledAnswers} answerClick={this.revelAnswer} />
             <Scoreboard teams={teams.slice()} activeTeamId={activeTeamId} />
-            <BigX count={3} />
+            <BigX count={xCount} />
           </GameContainer>
           <AdminScreen>
             <TeamsCRUD
@@ -518,6 +544,10 @@ class App extends React.Component {
               answerClick={this.revelAnswer}
             />
             <button onClick={this.showNextQuestion}>Next Question</button>
+
+            <button onClick={this.showX(1)}>X</button>
+            <button onClick={this.showX(2)}>XX</button>
+            <button onClick={this.showX(3)}>XXX</button>
           </AdminScreen>
         </Div>
       </ThemeProvider>
