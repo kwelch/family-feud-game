@@ -425,15 +425,10 @@ const XContainer = glamorous.span({
 
 const FadedContainer = glamorous.div({
   // ...fadeOutAnimation({ duration: '1s', delay: '2s' }),
-  // position: 'absolute',
   display: 'flex',
   justifyContent: 'center',
-  // alignItems: 'center',
-  // height: '100%',
   width: '100%',
   marginBottom: 20,
-  // top: 0,
-  // left: 0,
 });
 
 const BigX = ({ count = 1 }) => {
