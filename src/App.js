@@ -1,5 +1,5 @@
 // TODO: care enugh to finish prop-types, maybe try flow?
-/* eslint-disable react/prop-types, import/extensions, no-shadow */
+/* eslint-disable react/prop-types, import/extensions, no-shadow, no-unused-vars */
 import React from 'react';
 import Title from 'react-title-component';
 import { css } from 'glamor';
@@ -15,6 +15,7 @@ const sortByProp = prop => (a, b) => b[prop] - a[prop];
 const gameTheme = {
   colors: {
     primary: '#004070',
+    accent: '#ffcc1e',
     backgroundColor: lighten(0.4, '#004070'),
   },
   containerBorderSize: 8,
@@ -126,9 +127,9 @@ const AnimatedCorner = glamorous.div(
   })
 );
 
-const BoxContainer = ({ children, animate = false, ...props }) => {
+const BoxContainer = ({ children, animate = false, width, ...props }) => {
   return (
-    <glamorous.Div position="relative">
+    <glamorous.Div position="relative" display="table" width={width}>
       {[
         ...Array.from({ length: 4 }).map((v, i) => <Corner key={i} pos={cornerPos[i]} />),
         animate && <AnimatedCorner color="blue" />,
@@ -142,10 +143,7 @@ const BoxContainer = ({ children, animate = false, ...props }) => {
 
 const GameContainer = glamorous.div({
   position: 'relative',
-  display: 'flex',
-  width: '100%',
-  justifyContent: 'space-around',
-  alignItems: 'flex-start',
+  width: '50%',
 });
 
 const TeamList = glamorous.ol({
@@ -157,15 +155,18 @@ const TeamList = glamorous.ol({
 const TeamContainer = glamorous.li(
   {
     margin: 0,
-    padding: 0,
+    padding: '0.4rem',
     display: 'flex',
-    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    border: '1px solid white',
+    border: '3px solid white',
+    '& + li': {
+      marginTop: '0.6rem',
+    },
   },
-  ({ isActive }, { colors: { primary } }) => ({
-    borderColor: isActive && primary,
+  ({ isActive }, { colors: { accent, primary } }) => ({
+    borderColor: isActive && accent,
+    backgroundColor: isActive && primary,
   })
 );
 
@@ -176,11 +177,11 @@ const TeamName = glamorous.dd({
 
 const TeamScore = glamorous.dl({
   margin: 0,
-  padding: 0,
+  marginLeft: '1rem',
 });
 
 const Scoreboard = ({ teams, activeTeamId }) => (
-  <BoxContainer style={{ width: '200px' }}>
+  <BoxContainer>
     <h2>Score</h2>
     <TeamList>
       {teams.sort(sortByProp('score')).map(t => (
@@ -200,6 +201,7 @@ const AnswerWrapper = glamorous.div({
   justifyContent: 'space-between',
   border: '2px solid black',
   overflow: 'hidden',
+  width: '380px',
 });
 
 const AnswerText = glamorous.span({
@@ -263,33 +265,64 @@ const QuestionBoardContainer = glamorous.div({
 });
 
 const QuestionBoard = ({ reveledAnswers = [], answerClick, question: { id, text, responses = [] } = {} }) => {
+  const sortedResponses = responses.sort(sortByProp('value'));
+  // TODO: two columns
   return (
     <QuestionBoardContainer>
-      <BoxContainer>
+      <BoxContainer width="60%">
         {text}
       </BoxContainer>
-      <Div>
-        {responses.sort(sortByProp('value')).map((response, idx) => {
-          const respId = `${id}_${idx}`;
-          return (
-            <AnswerContainer
-              key={respId}
-              onClick={answerClick(respId)}
-              isReveled={reveledAnswers.includes(respId)}
-              position={idx + 1}
-              {...response}
-            />
-          );
-        })}
+      <Div display="flex" flexDirection="row" flexWrap="nowrap">
+        {sortedResponses.length
+          ? <Div display="flex" flexDirection="column" flexWrap="nowrap">{Array.from({ length: 4 }).map((curr, idx) => {
+              if (idx < sortedResponses.length) {
+                const response = sortedResponses[idx];
+                const respId = `${id}_${idx}`;
+                return (
+                  <AnswerContainer
+                    key={respId}
+                    onClick={answerClick(respId)}
+                    isReveled={reveledAnswers.includes(respId)}
+                    position={idx + 1}
+                    {...response}
+                  />
+                );
+              } else {
+                return <AnswerWrapper style={{ padding: '1.5rem 0' }}><AnswerHidder />?</AnswerWrapper>;
+              }
+            })}</Div>
+          : null}
+          {sortedResponses.length
+            ? <Div display="flex" flexDirection="column" flexWrap="nowrap">{Array.from({ length: 4 }).map((curr, idx) => {
+              const index = idx + 4;
+              if (index < sortedResponses.length) {
+                const response = sortedResponses[index];
+                const respId = `${id}_${index}`;
+                return (
+                  <AnswerContainer
+                    key={respId}
+                    onClick={answerClick(respId)}
+                    isReveled={reveledAnswers.includes(respId)}
+                    position={index + 1}
+                    {...response}
+                  />
+                );
+              } else {
+                return <AnswerWrapper style={{ padding: '1.5rem 0' }}><AnswerHidder />?</AnswerWrapper>;
+              }
+            })}</Div>
+            : null}
       </Div>
     </QuestionBoardContainer>
   );
 };
 
 const AdminScreen = glamorous.div({
+  width: '50%',
   padding: '2rem',
   backgroundColor: 'white',
   border: '1px solid black',
+  boxSizing: 'border-box',
 });
 
 const TeamEditRow = ({ name = '', score = 0, onChange, setActive, isActive }) => {
@@ -379,9 +412,14 @@ const QuestionAdmin = ({
         {responses.sort(sortByProp('value')).map((resp, i) => {
           const respId = `${id}_${i}`;
           return (
-            <li key={respId} onClick={answerClick(respId)} isActive={reveledAnswers.includes(respId)}>
+            <li
+              style={{ paddingBottom: '1rem' }}
+              key={respId}
+              onClick={answerClick(respId)}
+              isActive={reveledAnswers.includes(respId)}
+            >
               <span>{resp.label}</span>
-              <span>{resp.value}</span>
+              <span style={{ marginLeft: '1rem' }}>{resp.value}</span>
             </li>
           );
         })}
@@ -398,19 +436,20 @@ const randomNumberBetween = (low, high) => {
 const XContainer = glamorous.span({
   fontSize: '3rem',
   color: 'red',
-  padding: '1.2rem',
+  padding: '0.4rem 0 0 0.4rem',
+  border: '8px solid red',
+  textAlign: 'center',
+  '& + span': {
+    marginLeft: 8,
+  },
 });
 
 const FadedContainer = glamorous.div({
-  ...fadeOutAnimation({ duration: '1s', delay: '2s' }),
-  position: 'absolute',
+  // ...fadeOutAnimation({ duration: '1s', delay: '2s' }),
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
   width: '100%',
-  top: 0,
-  left: 0,
+  marginBottom: 20,
 });
 
 const BigX = ({ count = 1 }) => {
@@ -522,13 +561,21 @@ class App extends React.Component {
     const currentQuestion = questions.find(q => q.id === currentQuestionId);
     return (
       <ThemeProvider theme={gameTheme}>
-        <Div display="flex" flexDirection="column" alignItems="center">
+        <Div display="flex" flexDirection="row" alignItems="flex-start">
           <Title render="Family Feud" />
-          <Header>Family Feud</Header>
-          <GameContainer>
-            <QuestionBoard question={currentQuestion} reveledAnswers={reveledAnswers} answerClick={this.revelAnswer} />
+          <GameContainer
+            style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between' }}
+          >
+            <Div display="flex" flexDirection="column" flexGrow={1}>
+              <Header style={{ textAlign: 'center' }}>Family Feud</Header>
+              <BigX count={xCount} />
+              <QuestionBoard
+                question={currentQuestion}
+                reveledAnswers={reveledAnswers}
+                answerClick={this.revelAnswer}
+              />
+            </Div>
             <Scoreboard teams={teams.slice()} activeTeamId={activeTeamId} />
-            <BigX count={xCount} />
           </GameContainer>
           <AdminScreen>
             <TeamsCRUD
@@ -543,8 +590,10 @@ class App extends React.Component {
               showAllAnswers={this.showAllAnswers}
               answerClick={this.revelAnswer}
             />
-            <button onClick={this.showNextQuestion}>Next Question</button>
-
+            <br />
+            <button onClick={this.showNextQuestion}>Next Question</button><br />
+            <br />
+            <button onClick={this.showX(0)}><s>X</s></button>
             <button onClick={this.showX(1)}>X</button>
             <button onClick={this.showX(2)}>XX</button>
             <button onClick={this.showX(3)}>XXX</button>
