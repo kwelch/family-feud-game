@@ -127,9 +127,9 @@ const AnimatedCorner = glamorous.div(
   })
 );
 
-const BoxContainer = ({ children, animate = false, ...props }) => {
+const BoxContainer = ({ children, animate = false, width, ...props }) => {
   return (
-    <glamorous.Div position="relative" display="table">
+    <glamorous.Div position="relative" display="table" width={width}>
       {[
         ...Array.from({ length: 4 }).map((v, i) => <Corner key={i} pos={cornerPos[i]} />),
         animate && <AnimatedCorner color="blue" />,
@@ -157,7 +157,6 @@ const TeamContainer = glamorous.li(
     margin: 0,
     padding: '0.4rem',
     display: 'flex',
-    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     border: '3px solid white',
@@ -165,8 +164,9 @@ const TeamContainer = glamorous.li(
       marginTop: '0.6rem',
     },
   },
-  ({ isActive }, { colors: { accent } }) => ({
+  ({ isActive }, { colors: { accent, primary } }) => ({
     borderColor: isActive && accent,
+    backgroundColor: isActive && primary,
   })
 );
 
@@ -177,7 +177,7 @@ const TeamName = glamorous.dd({
 
 const TeamScore = glamorous.dl({
   margin: 0,
-  padding: 0,
+  marginLeft: '1rem',
 });
 
 const Scoreboard = ({ teams, activeTeamId }) => (
@@ -201,6 +201,7 @@ const AnswerWrapper = glamorous.div({
   justifyContent: 'space-between',
   border: '2px solid black',
   overflow: 'hidden',
+  width: '200px',
 });
 
 const AnswerText = glamorous.span({
@@ -268,12 +269,12 @@ const QuestionBoard = ({ reveledAnswers = [], answerClick, question: { id, text,
   // TODO: two columns
   return (
     <QuestionBoardContainer>
-      <BoxContainer>
+      <BoxContainer width="60%">
         {text}
       </BoxContainer>
-      <Div>
+      <Div display="flex" flexDirection="row" flexWrap="nowrap">
         {sortedResponses.length
-          ? Array.from({ length: 8 }).map((curr, idx) => {
+          ? <Div display="flex" flexDirection="column" flexWrap="nowrap">{Array.from({ length: 4 }).map((curr, idx) => {
               if (idx < sortedResponses.length) {
                 const response = sortedResponses[idx];
                 const respId = `${id}_${idx}`;
@@ -287,10 +288,30 @@ const QuestionBoard = ({ reveledAnswers = [], answerClick, question: { id, text,
                   />
                 );
               } else {
-                return <AnswerWrapper style={{ padding: '1.5rem 1rem' }}><AnswerHidder />?</AnswerWrapper>;
+                return <AnswerWrapper style={{ padding: '1.5rem 0' }}><AnswerHidder />?</AnswerWrapper>;
               }
-            })
+            })}</Div>
           : null}
+          {sortedResponses.length
+            ? <Div display="flex" flexDirection="column" flexWrap="nowrap">{Array.from({ length: 4 }).map((curr, idx) => {
+              const index = idx + 4;
+              if (index < sortedResponses.length) {
+                const response = sortedResponses[index];
+                const respId = `${id}_${index}`;
+                return (
+                  <AnswerContainer
+                    key={respId}
+                    onClick={answerClick(respId)}
+                    isReveled={reveledAnswers.includes(respId)}
+                    position={index + 1}
+                    {...response}
+                  />
+                );
+              } else {
+                return <AnswerWrapper style={{ padding: '1.5rem 0' }}><AnswerHidder />?</AnswerWrapper>;
+              }
+            })}</Div>
+            : null}
       </Div>
     </QuestionBoardContainer>
   );
@@ -542,8 +563,10 @@ class App extends React.Component {
       <ThemeProvider theme={gameTheme}>
         <Div display="flex" flexDirection="row" alignItems="flex-start">
           <Title render="Family Feud" />
-          <GameContainer style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
-            <Div display="flex" flexDirection="column">
+          <GameContainer
+            style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between' }}
+          >
+            <Div display="flex" flexDirection="column" flexGrow={1}>
               <Header style={{ textAlign: 'center' }}>Family Feud</Header>
               <BigX count={xCount} />
               <QuestionBoard
