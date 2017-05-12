@@ -201,7 +201,7 @@ const AnswerWrapper = glamorous.div({
   justifyContent: 'space-between',
   border: '2px solid black',
   overflow: 'hidden',
-  width: '200px',
+  width: '380px',
 });
 
 const AnswerText = glamorous.span({
