@@ -4,318 +4,32 @@ import React from 'react';
 import Title from 'react-title-component';
 import { css } from 'glamor';
 import glamorous, { ThemeProvider } from 'glamorous';
-import { lighten } from 'polished';
+import { lighten, darken } from 'polished';
 import classnames from 'classnames';
+import Box from './components/Box';
+import Gameboard from './components/Gameboard';
+import { sortByProp } from './utils';
 import questions from './questions.json';
 
 const { Div } = glamorous;
 
-const sortByProp = prop => (a, b) => b[prop] - a[prop];
-
 const gameTheme = {
   colors: {
-    primary: '#004070',
-    accent: '#ffcc1e',
-    backgroundColor: lighten(0.4, '#004070'),
+    primary: '#fb0605',
+    accent: '#073b9e',
+    backgroundColor: '#fde81f',
   },
   containerBorderSize: 8,
 };
 
+css.global('html', {
+  width: '100%',
+});
 css.global('body', {
+  height: '100%',
   width: '100%',
   backgroundColor: gameTheme.colors.backgroundColor,
 });
-
-const Header = glamorous.h1({
-  color: 'white',
-  fontSize: '2.3rem',
-  textShadow: '2px 2px black',
-});
-
-const Box = glamorous.div(
-  {
-    backgroundColor: 'black',
-    color: 'white',
-    padding: '20px',
-    border: `0px solid white`,
-  },
-  (_, { containerBorderSize, colors: { primary } }) => ({
-    backgroundColor: lighten(0.2, primary),
-    borderColor: primary,
-    borderWidth: containerBorderSize,
-  })
-);
-
-const cornerPos = [
-  { left: '0px', top: '0px' },
-  { bottom: '0px', left: '0px' },
-  { top: '0px', right: '0px' },
-  { right: '0px', bottom: '0px' },
-];
-
-const Corner = glamorous.div(
-  {
-    display: 'block',
-    backgroundColor: 'red',
-    position: 'absolute',
-    zIndex: 9,
-  },
-  ({ pos }, { containerBorderSize, colors: { backgroundColor } }) => ({
-    height: containerBorderSize,
-    width: containerBorderSize,
-    backgroundColor,
-    ...pos,
-  })
-);
-
-// Define the animation styles
-const fourCornerAnimation = ({ containerBorderSize }) => {
-  const runner = css.keyframes({
-    '0%': { left: '0%', top: '0%', marginLeft: 0, marginTop: 0 },
-    '25%': {
-      left: '100%',
-      top: '0%',
-      marginLeft: `-${containerBorderSize}px`,
-      marginTop: 0,
-    },
-    '50%': {
-      left: '100%',
-      top: '100%',
-      marginLeft: `-${containerBorderSize}px`,
-      marginTop: `-${containerBorderSize}px`,
-    },
-    '75%': {
-      left: '0%',
-      top: '100%',
-      marginLeft: 0,
-      marginTop: `-${containerBorderSize}px`,
-    },
-    '100%': { left: '0%', top: '0%', marginLeft: 0, marginTop: 0 },
-  });
-  return { animation: `${runner} 6s infinite linear` };
-};
-
-const fadeOutAnimation = ({
-  duration,
-  timing = 'ease-in',
-  delay = '0s',
-  count = 1,
-  direction = 'normal',
-  fillMode = 'forwards',
-}) => {
-  const keyframes = css.keyframes({
-    '0%': { opacity: 1 },
-    '100%': { opacity: 0 },
-  });
-  return { animation: `${keyframes} ${duration} ${timing} ${delay} ${count} ${direction} ${fillMode}` };
-};
-
-const AnimatedCorner = glamorous.div(
-  {
-    display: 'block',
-    backgroundColor: 'red',
-    position: 'absolute',
-    zIndex: 9,
-    top: 0,
-    left: 0,
-  },
-  ({ color }, { containerBorderSize }) => ({
-    height: containerBorderSize,
-    width: containerBorderSize,
-    backgroundColor: color,
-    ...fourCornerAnimation({ containerBorderSize }),
-  })
-);
-
-const BoxContainer = ({ children, animate = false, width, ...props }) => {
-  return (
-    <glamorous.Div position="relative" display="table" width={width}>
-      {[
-        ...Array.from({ length: 4 }).map((v, i) => <Corner key={i} pos={cornerPos[i]} />),
-        animate && <AnimatedCorner color="blue" />,
-      ]}
-      <Box {...props}>
-        {children}
-      </Box>
-    </glamorous.Div>
-  );
-};
-
-const GameContainer = glamorous.div({
-  position: 'relative',
-  width: '50%',
-});
-
-const TeamList = glamorous.ol({
-  listStyle: 'none',
-  margin: 0,
-  padding: 0,
-});
-
-const TeamContainer = glamorous.li(
-  {
-    margin: 0,
-    padding: '0.4rem',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    border: '3px solid white',
-    '& + li': {
-      marginTop: '0.6rem',
-    },
-  },
-  ({ isActive }, { colors: { accent, primary } }) => ({
-    borderColor: isActive && accent,
-    backgroundColor: isActive && primary,
-  })
-);
-
-const TeamName = glamorous.dd({
-  margin: 0,
-  padding: 0,
-});
-
-const TeamScore = glamorous.dl({
-  margin: 0,
-  marginLeft: '1rem',
-});
-
-const Scoreboard = ({ teams, activeTeamId }) => (
-  <BoxContainer>
-    <h2>Score</h2>
-    <TeamList>
-      {teams.sort(sortByProp('score')).map(t => (
-        <TeamContainer key={t.id} isActive={t.id === activeTeamId}>
-          <TeamName>{t.name}</TeamName>
-          <TeamScore>{t.score}</TeamScore>
-        </TeamContainer>
-      ))}
-    </TeamList>
-  </BoxContainer>
-);
-
-const AnswerWrapper = glamorous.div({
-  position: 'relative',
-  margin: '2rem',
-  display: 'flex',
-  justifyContent: 'space-between',
-  border: '2px solid black',
-  overflow: 'hidden',
-  width: '380px',
-});
-
-const AnswerText = glamorous.span({
-  flexGrow: 1,
-  backgroundColor: 'white',
-  padding: '1.5rem 1rem',
-});
-
-const AnswerValue = glamorous.span({
-  width: '50px',
-  textAlign: 'center',
-  padding: '1.5rem .5rem',
-  borderLeft: '2px solid black',
-  backgroundColor: 'red',
-});
-
-const AnswerHidder = glamorous.div(
-  {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '100%',
-    width: '100%',
-    backgroundColor: 'white',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transitionProperty: 'left',
-    transitionDuration: '.7s',
-    transitionTimingFunction: 'ease-out',
-    transitionDelay: '.5s',
-    '&.hide': {
-      left: '105%',
-    },
-  },
-  (_, { colors: { primary } }) => ({
-    backgroundColor: lighten(0.5, primary),
-  })
-);
-
-const PositionIndicator = glamorous.div({});
-
-const AnswerContainer = ({ label, value, isReveled, onClick, position }) => {
-  return (
-    <AnswerWrapper onClick={!isReveled && onClick}>
-      <AnswerHidder className={classnames({ hide: isReveled })}>
-        <PositionIndicator>
-          {position}
-        </PositionIndicator>
-      </AnswerHidder>
-      <AnswerText>{label}</AnswerText><AnswerValue>{value}</AnswerValue>
-    </AnswerWrapper>
-  );
-};
-
-const QuestionBoardContainer = glamorous.div({
-  display: 'flex',
-  flexGrow: 1,
-  flexDirection: 'column',
-  alignItems: 'center',
-});
-
-const QuestionBoard = ({ reveledAnswers = [], answerClick, question: { id, text, responses = [] } = {} }) => {
-  const sortedResponses = responses.sort(sortByProp('value'));
-  // TODO: two columns
-  return (
-    <QuestionBoardContainer>
-      <BoxContainer width="60%">
-        {text}
-      </BoxContainer>
-      <Div display="flex" flexDirection="row" flexWrap="nowrap">
-        {sortedResponses.length
-          ? <Div display="flex" flexDirection="column" flexWrap="nowrap">{Array.from({ length: 4 }).map((curr, idx) => {
-              if (idx < sortedResponses.length) {
-                const response = sortedResponses[idx];
-                const respId = `${id}_${idx}`;
-                return (
-                  <AnswerContainer
-                    key={respId}
-                    onClick={answerClick(respId)}
-                    isReveled={reveledAnswers.includes(respId)}
-                    position={idx + 1}
-                    {...response}
-                  />
-                );
-              } else {
-                return <AnswerWrapper style={{ padding: '1.5rem 0' }}><AnswerHidder />?</AnswerWrapper>;
-              }
-            })}</Div>
-          : null}
-          {sortedResponses.length
-            ? <Div display="flex" flexDirection="column" flexWrap="nowrap">{Array.from({ length: 4 }).map((curr, idx) => {
-              const index = idx + 4;
-              if (index < sortedResponses.length) {
-                const response = sortedResponses[index];
-                const respId = `${id}_${index}`;
-                return (
-                  <AnswerContainer
-                    key={respId}
-                    onClick={answerClick(respId)}
-                    isReveled={reveledAnswers.includes(respId)}
-                    position={index + 1}
-                    {...response}
-                  />
-                );
-              } else {
-                return <AnswerWrapper style={{ padding: '1.5rem 0' }}><AnswerHidder />?</AnswerWrapper>;
-              }
-            })}</Div>
-            : null}
-      </Div>
-    </QuestionBoardContainer>
-  );
-};
 
 const AdminScreen = glamorous.div({
   width: '50%',
@@ -433,46 +147,44 @@ const randomNumberBetween = (low, high) => {
   return Math.floor(Math.random() * high) + low;
 };
 
-const XContainer = glamorous.span({
-  fontSize: '3rem',
-  color: 'red',
-  padding: '0.4rem 0 0 0.4rem',
-  border: '8px solid red',
-  textAlign: 'center',
-  '& + span': {
-    marginLeft: 8,
-  },
-});
-
-const FadedContainer = glamorous.div({
-  // ...fadeOutAnimation({ duration: '1s', delay: '2s' }),
+const AppContainer = glamorous.div({
   display: 'flex',
-  justifyContent: 'center',
-  width: '100%',
-  marginBottom: 20,
+  flexDirection: 'row',
+  alignItems: 'flex-start',
 });
 
-const BigX = ({ count = 1 }) => {
-  return (
-    <FadedContainer style={{ animationPlayState: 'running' }}>
-      {Array.from({ length: count }).map(() => <XContainer>X</XContainer>)}
-    </FadedContainer>
-  );
-};
+const AppBackground = glamorous.div({
+  content: '',
+  position: 'absolute',
+  display: 'block',
+  width: '100%',
+  height: '100%',
+  bottom: 0,
+  zIndex: -1,
+  backgroundImage: `url(${require('./assets/bg.jpg')})`,
+  backgroundRepeat: 'repeat-x',
+  backgroundPosition: 'center top',
+  transform: 'rotate(180deg)',
+});
 
 class App extends React.Component {
   state = {
-    activeTeamId: 0,
+    activeTeamId: 1,
     currentQuestionId: 0,
     reveledAnswers: [],
     usedQuestions: [],
-    xCount: 0,
+    xCount: 3,
     teams: [
       { id: 1, name: 'Jackson', score: 0 },
       { id: 2, name: 'Jonas', score: 0 },
       { id: 3, name: 'Kardashians', score: 0 },
     ],
   };
+
+  constructor(props) {
+    super(props);
+    setTimeout(this.showNextQuestion);
+  }
 
   replaceTeamInList = ({ teams }) => team => {
     if (!team) {
@@ -544,7 +256,7 @@ class App extends React.Component {
       } while (usedQuestions.includes(newQuestionId));
       return {
         currentQuestionId: newQuestionId,
-        xCount: 0,
+        // xCount: 0,
         usedQuestions: [...usedQuestions, newQuestionId],
       };
     });
@@ -561,23 +273,18 @@ class App extends React.Component {
     const currentQuestion = questions.find(q => q.id === currentQuestionId);
     return (
       <ThemeProvider theme={gameTheme}>
-        <Div display="flex" flexDirection="row" alignItems="flex-start">
+        <AppContainer>
+          <AppBackground />
           <Title render="Family Feud" />
-          <GameContainer
-            style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between' }}
-          >
-            <Div display="flex" flexDirection="column" flexGrow={1}>
-              <Header style={{ textAlign: 'center' }}>Family Feud</Header>
-              <BigX count={xCount} />
-              <QuestionBoard
-                question={currentQuestion}
-                reveledAnswers={reveledAnswers}
-                answerClick={this.revelAnswer}
-              />
-            </Div>
-            <Scoreboard teams={teams.slice()} activeTeamId={activeTeamId} />
-          </GameContainer>
-          <AdminScreen>
+          <Gameboard
+            xCount={xCount}
+            currentQuestion={currentQuestion}
+            reveledAnswers={reveledAnswers}
+            activeTeamId={activeTeamId}
+            teams={teams}
+            revelAnswer={this.revelAnswer}
+          />
+          <AdminScreen style={{ display: 'none' }}>
             <TeamsCRUD
               teams={teams}
               updater={this.updateTeam}
@@ -598,7 +305,7 @@ class App extends React.Component {
             <button onClick={this.showX(2)}>XX</button>
             <button onClick={this.showX(3)}>XXX</button>
           </AdminScreen>
-        </Div>
+        </AppContainer>
       </ThemeProvider>
     );
   }
