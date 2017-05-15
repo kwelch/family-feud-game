@@ -15,9 +15,9 @@ const { Div } = glamorous;
 
 const gameTheme = {
   colors: {
-    primary: '#fb0605',
-    accent: '#073b9e',
-    backgroundColor: '#fde81f',
+    primary: '#f2621c',
+    accent: '#334f99',
+    backgroundColor: '#fbf152',
   },
   containerBorderSize: 8,
 };

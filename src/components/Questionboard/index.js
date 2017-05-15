@@ -47,9 +47,10 @@ const AnswerValue = glamorous.span(
     textAlign: 'center',
     padding: '1.5rem .5rem',
     borderLeft: '2px solid black',
+    color: 'white',
   },
-  (_, { colors: { primary } }) => ({
-    backgroundColor: lighten(0.2, primary),
+  (_, { colors: { accent } }) => ({
+    backgroundColor: accent,
   })
 );
 
