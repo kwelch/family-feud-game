@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = (env = {}) => ({
   target: 'web',
   devtool: 'cheap-eval-source-map',
   entry: {
@@ -11,7 +11,7 @@ module.exports = {
   output: {
     filename: '[name].[hash].js',
     path: path.resolve('./dist'),
-    publicPath: '/family-feud-game/',
+    publicPath: env.production ? '/family-feud-game/' : '/',
   },
   module: {
     rules: [
@@ -49,4 +49,4 @@ module.exports = {
       template: 'index.html',
     }),
   ],
-};
+});

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "prebuild": "rimraf dist",
-    "build": "webpack -p",
+    "build": "webpack -p --env.production",
     "test": "jest",
     "lint": "eslint .",
     "deploy": "gh-pages -d dist -b gh-pages"
