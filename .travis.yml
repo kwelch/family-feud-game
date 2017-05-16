@@ -6,3 +6,5 @@ cache:
 script:
   - yarn run test
   - yarn run build
+after_success:
+  - yarn run deploy
