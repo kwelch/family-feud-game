@@ -10,7 +10,7 @@
     "build": "webpack -p --env.production",
     "test": "jest",
     "lint": "eslint .",
-    "deploy": "gh-pages -d dist -b gh-pages"
+    "deploy": "gh-pages -d dist -b gh-pages -r https://github.com/kwelch/family-feud-game.git"
   },
   "dependencies": {
     "babel-plugin-captains-log": "^0.6.0",
