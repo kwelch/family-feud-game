@@ -8,6 +8,7 @@ import { lighten, darken } from 'polished';
 import classnames from 'classnames';
 import Box from './components/Box';
 import Gameboard from './components/Gameboard';
+import AdminScreen, { TeamsCRUD, QuestionAdmin } from './components/AdminScreen';
 import { sortByProp } from './utils';
 import questions from './questions.json';
 
@@ -31,127 +32,23 @@ css.global('body', {
   backgroundColor: gameTheme.colors.backgroundColor,
 });
 
-const AdminScreen = glamorous.div({
-  width: '50%',
-  padding: '2rem',
-  backgroundColor: 'white',
-  border: '1px solid black',
-  boxSizing: 'border-box',
-});
-
-const TeamEditRow = ({ name = '', score = 0, onChange, setActive, isActive }) => {
-  const scoreUpdate = ({ target: { value } }) => {
-    return onChange({ target: { name: 'score', value: Number(value) } });
-  };
-  return (
-    <tr>
-      <td>
-        <input name="name" value={name} onChange={onChange} />
-      </td>
-      <td>
-        <input name="score" value={score} onChange={scoreUpdate} />
-      </td>
-      <td style={{ display: setActive ? 'auto' : 'none' }}>
-        <input type="checkbox" name="active" checked={isActive} onChange={setActive} />
-      </td>
-    </tr>
-  );
-};
-
-const TeamsCRUD = ({ teams = [], updater, setActive, activeTeamId }) => {
-  let newTeamField = null;
-  const teamUpdate = team => ({ target: { name, value } }) => {
-    return updater(
-      Object.assign({}, team, {
-        [name]: value,
-      })
-    );
-  };
-  const addNewTeam = ({ key }) => {
-    if (key === 'Enter' && newTeamField) {
-      const idList = teams.map(t => t.id);
-      const nextId = Math.max.apply(null, idList) + 1;
-      updater({ id: nextId, name: newTeamField.value, score: 0 });
-      newTeamField.value = '';
-    }
-  };
-  return (
-    <table>
-      <thead>
-        <tr><th colSpan={3}>Team List</th></tr>
-        <tr>
-          <th>Name</th>
-          <th>Score</th>
-          <th>Active</th>
-        </tr>
-      </thead>
-      <tbody>
-        {teams.map(team => (
-          <TeamEditRow
-            key={team.id}
-            setActive={setActive(team.id)}
-            onChange={teamUpdate(team)}
-            isActive={activeTeamId === team.id}
-            {...team}
-          />
-        ))}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>
-            <input
-              name="name"
-              ref={input => {
-                newTeamField = input;
-              }}
-              onKeyPress={addNewTeam}
-            />
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-  );
-};
-
-const QuestionAdmin = ({
-  question: { id, text, responses = [] } = {},
-  reveledAnswers = [],
-  showAllAnswers,
-  answerClick,
-}) => {
-  return (
-    <div>
-      <h2>{text}</h2>
-      <ul>
-        {responses.sort(sortByProp('value')).map((resp, i) => {
-          const respId = `${id}_${i}`;
-          return (
-            <li
-              style={{ paddingBottom: '1rem' }}
-              key={respId}
-              onClick={answerClick(respId)}
-              isActive={reveledAnswers.includes(respId)}
-            >
-              <span>{resp.label}</span>
-              <span style={{ marginLeft: '1rem' }}>{resp.value}</span>
-            </li>
-          );
-        })}
-      </ul>
-      <button onClick={showAllAnswers}>Reveal All</button>
-    </div>
-  );
-};
-
 const randomNumberBetween = (low, high) => {
   return Math.floor(Math.random() * high) + low;
 };
 
-const AppContainer = glamorous.div({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'flex-start',
-});
+const AppContainer = glamorous.div(
+  {
+    display: 'flex',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    '@media(max-width: 2000px)': {
+      flexDirection: 'column',
+    },
+  },
+  (_, { colors: { primary, accent } }) => ({
+    '& button': {},
+  })
+);
 
 const AppBackground = glamorous.div({
   content: '',
@@ -169,22 +66,17 @@ const AppBackground = glamorous.div({
 
 class App extends React.Component {
   state = {
-    activeTeamId: 1,
+    activeTeamId: 0,
     currentQuestionId: 0,
     reveledAnswers: [],
     usedQuestions: [],
-    xCount: 3,
+    xCount: 0,
     teams: [
       { id: 1, name: 'Jackson', score: 0 },
       { id: 2, name: 'Jonas', score: 0 },
       { id: 3, name: 'Kardashians', score: 0 },
     ],
   };
-
-  constructor(props) {
-    super(props);
-    setTimeout(this.showNextQuestion);
-  }
 
   replaceTeamInList = ({ teams }) => team => {
     if (!team) {
@@ -263,6 +155,7 @@ class App extends React.Component {
   };
 
   showX = count => () => {
+    // todo: add sound
     this.setState({
       xCount: count,
     });
@@ -284,7 +177,7 @@ class App extends React.Component {
             teams={teams}
             revelAnswer={this.revelAnswer}
           />
-          <AdminScreen style={{ display: 'none' }}>
+          <AdminScreen>
             <TeamsCRUD
               teams={teams}
               updater={this.updateTeam}
@@ -296,14 +189,9 @@ class App extends React.Component {
               reveledAnswers={reveledAnswers}
               showAllAnswers={this.showAllAnswers}
               answerClick={this.revelAnswer}
+              showNextQuestion={this.showNextQuestion}
+              showX={this.showX}
             />
-            <br />
-            <button onClick={this.showNextQuestion}>Next Question</button><br />
-            <br />
-            <button onClick={this.showX(0)}><s>X</s></button>
-            <button onClick={this.showX(1)}>X</button>
-            <button onClick={this.showX(2)}>XX</button>
-            <button onClick={this.showX(3)}>XXX</button>
           </AdminScreen>
         </AppContainer>
       </ThemeProvider>
