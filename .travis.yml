@@ -8,7 +8,9 @@ script:
   - yarn run build
 deploy:
   provider: pages
+  local_dir: dist
+  target_branch: gh-pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
   on:
-    branch: gh-pages
+    branch: master
