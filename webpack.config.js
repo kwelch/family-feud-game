@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = (env = {}) => ({
+module.exports = (env = {}) => (console.log('isProduction:', env.production) || {
   target: 'web',
   devtool: 'cheap-eval-source-map',
   entry: {
