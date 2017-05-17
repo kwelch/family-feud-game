@@ -148,7 +148,7 @@ class App extends React.Component {
       } while (usedQuestions.includes(newQuestionId));
       return {
         currentQuestionId: newQuestionId,
-        // xCount: 0,
+        xCount: 0,
         usedQuestions: [...usedQuestions, newQuestionId],
       };
     });
