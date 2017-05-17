@@ -1276,54 +1276,20 @@
     ]
   },
   {
-    "id": 51,
-    "text": "Name something that you don’t wash as often as you probably should.",
-    "responses": [
-      {
-        "label": "Car",
-        "value": 9
-      },
-      {
-        "label": "Hands",
-        "value": 9
-      },
-      {
-        "label": "Hair",
-        "value": 4
-      },
-      {
-        "label": "Sheets",
-        "value": 0
-      },
-      {
-        "label": "Clothes",
-        "value": 6
-      },
-      {
-        "label": "Ears",
-        "value": 4
-      },
-      {
-        "label": "Windows",
-        "value": 3
-      }
-    ]
-  },
-  {
     "id": 52,
     "text": "Name something that you hope doesn’t break while you are inside of it.",
     "responses": [
       {
         "label": "Car",
-        "value": 3
+        "value": 53
       },
       {
         "label": "Elevator",
-        "value": 6
+        "value": 26
       },
       {
         "label": "Plane",
-        "value": 3
+        "value": 13
       },
       {
         "label": "Roller Coaster",
@@ -1337,15 +1303,15 @@
     "responses": [
       {
         "label": "Talk",
-        "value": 5
+        "value": 55
       },
       {
         "label": "Check People Out",
-        "value": 4
+        "value": 24
       },
       {
         "label": "Shower",
-        "value": 3
+        "value": 13
       },
       {
         "label": "Use Sauna/Hot tub",
@@ -1359,15 +1325,15 @@
     "responses": [
       {
         "label": "Clothes",
-        "value": 4
+        "value": 34
       },
       {
         "label": "Toothbrush",
-        "value": 0
+        "value": 30
       },
       {
         "label": "Money",
-        "value": 1
+        "value": 21
       },
       {
         "label": "Camera",
@@ -1380,136 +1346,24 @@
     ]
   },
   {
-    "id": 55,
-    "text": "Name a job where you can act like a kid.",
-    "responses": [
-      {
-        "label": "Clown",
-        "value": 4
-      },
-      {
-        "label": "Kindergarten Teacher",
-        "value": 1
-      },
-      {
-        "label": "Daycare Provider",
-        "value": 8
-      },
-      {
-        "label": "Actor",
-        "value": 6
-      },
-      {
-        "label": "Toy Store Employee",
-        "value": 6
-      }
-    ]
-  },
-  {
-    "id": 56,
-    "text": "We asked 100 Women: What might a man do for you on a first date that would make you think he would be husband material?",
-    "responses": [
-      {
-        "label": "Open Door",
-        "value": 1
-      },
-      {
-        "label": "Pay",
-        "value": 4
-      },
-      {
-        "label": "Bring Flowers",
-        "value": 5
-      },
-      {
-        "label": "Cook Dinner",
-        "value": 9
-      }
-    ]
-  },
-  {
-    "id": 57,
-    "text": "After a week of camping, what luxury of home are you most excited to have again?",
-    "responses": [
-      {
-        "label": "Bed",
-        "value": 5
-      },
-      {
-        "label": "Shower",
-        "value": 5
-      },
-      {
-        "label": "TV",
-        "value": 3
-      },
-      {
-        "label": "Toilet",
-        "value": 1
-      },
-      {
-        "label": "Electricity",
-        "value": 4
-      },
-      {
-        "label": "Air Conditioner",
-        "value": 4
-      }
-    ]
-  },
-  {
     "id": 58,
     "text": "Name something your parents ask about every time they see you.",
     "responses": [
       {
         "label": "Work/School",
-        "value": 9
+        "value": 39
       },
       {
         "label": "Health/ Eating Right",
-        "value": 0
+        "value": 30
       },
       {
         "label": "Grandkids",
-        "value": 7
+        "value": 27
       },
       {
         "label": "Partner/ Dating",
         "value": 3
-      }
-    ]
-  },
-  {
-    "id": 59,
-    "text": "What do you call someone who is careful with money?",
-    "responses": [
-      {
-        "label": "Cheap",
-        "value": 1
-      },
-      {
-        "label": "Stingy",
-        "value": 1
-      },
-      {
-        "label": "Tight",
-        "value": 5
-      },
-      {
-        "label": "Penny Pincher",
-        "value": 2
-      },
-      {
-        "label": "Frugal",
-        "value": 8
-      },
-      {
-        "label": "Scrooge",
-        "value": 6
-      },
-      {
-        "label": "Thrifty",
-        "value": 4
       }
     ]
   },
@@ -1519,19 +1373,19 @@
     "responses": [
       {
         "label": "Coconut",
-        "value": 7
+        "value": 27
       },
       {
         "label": "Pineapple",
-        "value": 6
+        "value": 26
       },
       {
         "label": "Watermelon",
-        "value": 2
+        "value": 22
       },
       {
         "label": "Cantaloupe",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Pomegranate",
@@ -1545,11 +1399,11 @@
     "responses": [
       {
         "label": "Beach",
-        "value": 0
+        "value": 70
       },
       {
         "label": "Pool",
-        "value": 4
+        "value": 14
       },
       {
         "label": "Park",
@@ -1562,46 +1416,20 @@
     ]
   },
   {
-    "id": 62,
-    "text": "Name Something you get at the dentist that almost makes the trip worthwhile.",
-    "responses": [
-      {
-        "label": "Toothbrush",
-        "value": 0
-      },
-      {
-        "label": "Candy",
-        "value": 9
-      },
-      {
-        "label": "Clean Teeth",
-        "value": 3
-      },
-      {
-        "label": "Sticker",
-        "value": 8
-      },
-      {
-        "label": "Laughing Gas",
-        "value": 7
-      }
-    ]
-  },
-  {
     "id": 63,
     "text": "Tell me something you only do when you are sick. ",
     "responses": [
       {
         "label": "Nap",
-        "value": 7
+        "value": 37
       },
       {
         "label": "Vomit",
-        "value": 4
+        "value": 34
       },
       {
         "label": "Take Medicine",
-        "value": 4
+        "value": 14
       },
       {
         "label": "Eat Soup",
@@ -1623,15 +1451,15 @@
     "responses": [
       {
         "label": "Barking",
-        "value": 8
+        "value": 38
       },
       {
         "label": "Licking",
-        "value": 3
+        "value": 23
       },
       {
         "label": "Shedding",
-        "value": 0
+        "value": 20
       },
       {
         "label": "Scratching",
@@ -1649,15 +1477,15 @@
     "responses": [
       {
         "label": "Chips",
-        "value": 1
+        "value": 51
       },
       {
         "label": "Popcorn",
-        "value": 2
+        "value": 12
       },
       {
         "label": "Peanuts",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Crackers",
@@ -1679,15 +1507,15 @@
     "responses": [
       {
         "label": "Tights",
-        "value": 2
+        "value": 32
       },
       {
         "label": "Shorts",
-        "value": 7
+        "value": 17
       },
       {
         "label": "Mask",
-        "value": 5
+        "value": 15
       },
       {
         "label": "Robe",
@@ -1713,15 +1541,15 @@
     "responses": [
       {
         "label": "Floor",
-        "value": 1
+        "value": 41
       },
       {
         "label": "Someone's Couch",
-        "value": 8
+        "value": 28
       },
       {
         "label": "Class",
-        "value": 2
+        "value": 12
       },
       {
         "label": "Library",
@@ -1739,19 +1567,19 @@
     "responses": [
       {
         "label": "Wears A Crown",
-        "value": 8
+        "value": 38
       },
       {
         "label": "Rides A White Horse",
-        "value": 5
+        "value": 25
       },
       {
         "label": "Good Looking",
-        "value": 4
+        "value": 14
       },
       {
         "label": "Magical Kiss",
-        "value": 2
+        "value": 12
       }
     ]
   },
@@ -1761,23 +1589,23 @@
     "responses": [
       {
         "label": "Monsters",
-        "value": 7
+        "value": 37
       },
       {
         "label": "Cars",
-        "value": 2
+        "value": 22
       },
       {
         "label": "Cops",
-        "value": 9
+        "value": 19
       },
       {
         "label": "Bad Guys",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Dogs",
-        "value": 0
+        "value": 10
       }
     ]
   },
@@ -1787,15 +1615,15 @@
     "responses": [
       {
         "label": "School",
-        "value": 1
+        "value": 41
       },
       {
         "label": "Hospital",
-        "value": 1
+        "value": 21
       },
       {
         "label": "Airplane",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Doctor's Office",
@@ -1813,19 +1641,19 @@
     "responses": [
       {
         "label": "Swimming",
-        "value": 4
+        "value": 44
       },
       {
         "label": "Baseball",
-        "value": 8
+        "value": 18
       },
       {
         "label": "Volleyball",
-        "value": 7
+        "value": 17
       },
       {
         "label": "Surfing",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Boating",
@@ -1839,23 +1667,23 @@
     "responses": [
       {
         "label": "Clean",
-        "value": 1
+        "value": 21
       },
       {
         "label": "Exercise",
-        "value": 8
+        "value": 18
       },
       {
         "label": "Study",
-        "value": 8
+        "value": 18
       },
       {
         "label": "Garden",
-        "value": 2
+        "value": 12
       },
       {
         "label": "Eat",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Dance",
@@ -1873,19 +1701,19 @@
     "responses": [
       {
         "label": "Monster",
-        "value": 3
+        "value": 43
       },
       {
         "label": "Snake",
-        "value": 6
+        "value": 16
       },
       {
         "label": "Food",
-        "value": 2
+        "value": 12
       },
       {
         "label": "Spider",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Rodent",
@@ -1907,15 +1735,15 @@
     "responses": [
       {
         "label": "Elephant",
-        "value": 7
+        "value": 47
       },
       {
         "label": "Cow",
-        "value": 0
+        "value": 20
       },
       {
         "label": "Horse",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Bear",
@@ -1941,11 +1769,11 @@
     "responses": [
       {
         "label": "Send Food Back",
-        "value": 0
+        "value": 40
       },
       {
         "label": "Not Tip",
-        "value": 5
+        "value": 35
       },
       {
         "label": "Flirt",
@@ -1967,19 +1795,19 @@
     "responses": [
       {
         "label": "English",
-        "value": 6
+        "value": 36
       },
       {
         "label": "French",
-        "value": 2
+        "value": 22
       },
       {
         "label": "Italian",
-        "value": 4
+        "value": 14
       },
       {
         "label": "Spanish",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Chinese",
@@ -1993,11 +1821,11 @@
     "responses": [
       {
         "label": "Car",
-        "value": 5
+        "value": 45
       },
       {
         "label": "House",
-        "value": 1
+        "value": 41
       },
       {
         "label": "Jewelry",
@@ -2019,15 +1847,15 @@
     "responses": [
       {
         "label": "Scream",
-        "value": 3
+        "value": 43
       },
       {
         "label": "Hold Arms Up",
-        "value": 2
+        "value": 32
       },
       {
         "label": "Get Sick",
-        "value": 3
+        "value": 13
       },
       {
         "label": "Laugh",
@@ -2045,19 +1873,19 @@
     "responses": [
       {
         "label": "Driver",
-        "value": 3
+        "value": 33
       },
       {
         "label": "Construction",
-        "value": 0
+        "value": 20
       },
       {
         "label": "Police Officer",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Food Service",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Glass Maker",
@@ -2079,19 +1907,19 @@
     "responses": [
       {
         "label": "Shoe",
-        "value": 9
+        "value": 29
       },
       {
         "label": "Bra",
-        "value": 1
+        "value": 21
       },
       {
         "label": "Hat",
-        "value": 6
+        "value": 16
       },
       {
         "label": "Coat",
-        "value": 3
+        "value": 13
       },
       {
         "label": "Sweater",
@@ -2113,19 +1941,19 @@
     "responses": [
       {
         "label": "Shark",
-        "value": 6
+        "value": 36
       },
       {
         "label": "Tiger",
-        "value": 0
+        "value": 20
       },
       {
         "label": "Lion",
-        "value": 8
+        "value": 18
       },
       {
         "label": "Dog",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Bear",
@@ -2143,15 +1971,15 @@
     "responses": [
       {
         "label": "Soft Drinks",
-        "value": 7
+        "value": 37
       },
       {
         "label": "Kool-Aid",
-        "value": 7
+        "value": 27
       },
       {
         "label": "Juice",
-        "value": 1
+        "value": 21
       },
       {
         "label": "Milk",
@@ -2169,19 +1997,19 @@
     "responses": [
       {
         "label": "Hard/Confusing",
-        "value": 7
+        "value": 37
       },
       {
         "label": "Silly",
-        "value": 2
+        "value": 22
       },
       {
         "label": "Too Easy",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Too Personal",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Bad Answers",
@@ -2203,15 +2031,15 @@
     "responses": [
       {
         "label": "Construction Worker",
-        "value": 6
+        "value": 36
       },
       {
         "label": "Bouncer",
-        "value": 4
+        "value": 24
       },
       {
         "label": "Wrestler",
-        "value": 5
+        "value": 15
       },
       {
         "label": "Personal Trainer",
@@ -2237,19 +2065,19 @@
     "responses": [
       {
         "label": "Exchange Gifts",
-        "value": 9
+        "value": 39
       },
       {
         "label": "Eat",
-        "value": 0
+        "value": 20
       },
       {
         "label": "Wake Up",
-        "value": 4
+        "value": 14
       },
       {
         "label": "Cook",
-        "value": 2
+        "value": 12
       },
       {
         "label": "Sing",
@@ -2271,19 +2099,19 @@
     "responses": [
       {
         "label": "Cheese",
-        "value": 5
+        "value": 35
       },
       {
         "label": "Butter",
-        "value": 4
+        "value": 24
       },
       {
         "label": "Hot Sauce",
-        "value": 6
+        "value": 16
       },
       {
         "label": "Eggs",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Gravy",
@@ -2301,15 +2129,15 @@
     "responses": [
       {
         "label": "Skating",
-        "value": 9
+        "value": 39
       },
       {
         "label": "Gymnastics",
-        "value": 7
+        "value": 27
       },
       {
         "label": "Swimming",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Diving",
@@ -2331,11 +2159,11 @@
     "responses": [
       {
         "label": "Stapler",
-        "value": 1
+        "value": 41
       },
       {
         "label": "Scissors",
-        "value": 9
+        "value": 29
       },
       {
         "label": "Paper",
@@ -2361,19 +2189,19 @@
     "responses": [
       {
         "label": "Eyeballs",
-        "value": 5
+        "value": 45
       },
       {
         "label": "Bones",
-        "value": 1
+        "value": 21
       },
       {
         "label": "Gills",
-        "value": 8
+        "value": 18
       },
       {
         "label": "Scales",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Head",
@@ -2387,15 +2215,15 @@
     "responses": [
       {
         "label": "Throw Club",
-        "value": 6
+        "value": 56
       },
       {
         "label": "Break a Club",
-        "value": 0
+        "value": 20
       },
       {
         "label": "Curse",
-        "value": 3
+        "value": 13
       },
       {
         "label": "Kick the Ball",
@@ -2413,11 +2241,11 @@
     "responses": [
       {
         "label": "Food",
-        "value": 7
+        "value": 37
       },
       {
         "label": "Family",
-        "value": 2
+        "value": 32
       },
       {
         "label": "Dating/ Marriage",
@@ -2447,19 +2275,19 @@
     "responses": [
       {
         "label": "Egg Nog",
-        "value": 3
+        "value": 23
       },
       {
         "label": "Tree",
-        "value": 9
+        "value": 19
       },
       {
         "label": "Gifts",
-        "value": 7
+        "value": 17
       },
       {
         "label": "Santa Claus",
-        "value": 4
+        "value": 14
       },
       {
         "label": "Drinks",
@@ -2481,15 +2309,15 @@
     "responses": [
       {
         "label": "Toy",
-        "value": 8
+        "value": 48
       },
       {
         "label": "TV",
-        "value": 5
+        "value": 25
       },
       {
         "label": "Tickle",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Hugs/ Kisses",
@@ -2507,15 +2335,15 @@
     "responses": [
       {
         "label": "Felix the Cat",
-        "value": 5
+        "value": 35
       },
       {
         "label": "Morris",
-        "value": 4
+        "value": 14
       },
       {
         "label": "Garfield",
-        "value": 2
+        "value": 12
       },
       {
         "label": "Heathcliff",
@@ -2533,19 +2361,19 @@
     "responses": [
       {
         "label": "Sandwich",
-        "value": 7
+        "value": 27
       },
       {
         "label": "Steak",
-        "value": 4
+        "value": 14
       },
       {
         "label": "Apples",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Cake",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Watermelon",
@@ -2567,19 +2395,19 @@
     "responses": [
       {
         "label": "Bugs Bunny",
-        "value": 5
+        "value": 25
       },
       {
         "label": "Babe",
-        "value": 2
+        "value": 22
       },
       {
         "label": "Mickey Mouse",
-        "value": 2
+        "value": 22
       },
       {
         "label": "Kermit the Frog",
-        "value": 0
+        "value": 10
       },
       {
         "label": "Daffy Duck",
@@ -2601,19 +2429,19 @@
     "responses": [
       {
         "label": "Sick",
-        "value": 1
+        "value": 51
       },
       {
         "label": "Bad Behavior",
-        "value": 7
+        "value": 17
       },
       {
         "label": "Bad Grades",
-        "value": 3
+        "value": 13
       },
       {
         "label": "Fight",
-        "value": 1
+        "value": 11
       },
       {
         "label": "Skipping Class",
@@ -2627,19 +2455,19 @@
     "responses": [
       {
         "label": "Smoke",
-        "value": 1
+        "value": 21
       },
       {
         "label": "Flirt",
-        "value": 6
+        "value": 16
       },
       {
         "label": "Talk too much",
-        "value": 6
+        "value": 16
       },
       {
         "label": "Get Drunk",
-        "value": 2
+        "value": 12
       },
       {
         "label": "Burp",
@@ -2661,15 +2489,15 @@
     "responses": [
       {
         "label": "Ready to Order",
-        "value": 3
+        "value": 33
       },
       {
         "label": "Is Everything Ok",
-        "value": 1
+        "value": 31
       },
       {
         "label": "Want a Refill",
-        "value": 6
+        "value": 26
       },
       {
         "label": "Need Anything Else",
