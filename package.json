@@ -5,7 +5,7 @@
   "author": "Kyle Welch <kwelch0626@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server",
     "prebuild": "rimraf dist",
     "build": "webpack -p --env.production",
     "test": "jest",

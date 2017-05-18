@@ -1,5 +1,4 @@
 import glamorous from 'glamorous';
-import { sortByProp } from '../../utils';
 export * from './TeamsCRUD';
 export * from './QuestionAdmin';
 

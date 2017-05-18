@@ -100,19 +100,21 @@ class App extends React.Component {
     return null;
   };
 
+  addScoreToActive = score => () => {
+    this.setState(prevState => ({
+      ...this.replaceTeamInList(prevState)(this.addScoreToActiveTeam(prevState)(score)),
+    }));
+  };
+
   revelAnswer = answerId => () => {
     const id = answerId.split('_');
     // fuzzy search since id is array of strings and q.id is number
     const question = questions.find(q => q.id == id[0]); // eslint-disable-line eqeqeq
     const answer = question.responses.sort(sortByProp('value'))[id[1]];
 
-    this.setState(prevState => {
-      const updatedActiveTeam = this.addScoreToActiveTeam(prevState)(answer.value);
-      return {
-        ...this.replaceTeamInList(prevState)(updatedActiveTeam),
-        reveledAnswers: [...prevState.reveledAnswers, answerId],
-      };
-    });
+    this.setState(prevState => ({
+      reveledAnswers: [...prevState.reveledAnswers, answerId],
+    }));
   };
 
   showAllAnswers = () => {
@@ -190,6 +192,7 @@ class App extends React.Component {
               showAllAnswers={this.showAllAnswers}
               answerClick={this.revelAnswer}
               showNextQuestion={this.showNextQuestion}
+              addToActive={this.addScoreToActive}
               showX={this.showX}
             />
           </AdminScreen>
