@@ -6,9 +6,10 @@ import { css } from 'glamor';
 import glamorous, { ThemeProvider } from 'glamorous';
 import { lighten, darken } from 'polished';
 import classnames from 'classnames';
+import Sound from 'react-sound';
 import Box from './components/Box';
 import Gameboard from './components/Gameboard';
-import AdminScreen, { TeamsCRUD, QuestionAdmin } from './components/AdminScreen';
+import AdminScreen, { TeamsCRUD, QuestionAdmin, Soundboard } from './components/AdminScreen';
 import { sortByProp } from './utils';
 import questions from './questions.json';
 
@@ -76,6 +77,11 @@ class App extends React.Component {
       { id: 2, name: 'Jonas', score: 0 },
       { id: 3, name: 'Kardashians', score: 0 },
     ],
+    sounds: {
+      theme: Sound.status.STOPPED,
+      answer: Sound.status.STOPPED,
+      wrong: Sound.status.STOPPED,
+    },
   };
 
   replaceTeamInList = ({ teams }) => team => {
@@ -106,14 +112,29 @@ class App extends React.Component {
     }));
   };
 
+  changeSoundStatus = (key, status) => ({ sounds }) => {
+    return {
+      sounds: {
+        ...sounds,
+        [key]: status,
+      },
+    };
+  };
+
+  soundStatusHandler = (key, status) => () => {
+    this.setState(prevState => this.changeSoundStatus(key, status)(prevState));
+  };
+
   revelAnswer = answerId => () => {
     const id = answerId.split('_');
     // fuzzy search since id is array of strings and q.id is number
     const question = questions.find(q => q.id == id[0]); // eslint-disable-line eqeqeq
     const answer = question.responses.sort(sortByProp('value'))[id[1]];
+    const playSound = this.changeSoundStatus('answer', Sound.status.PLAYING);
 
     this.setState(prevState => ({
       reveledAnswers: [...prevState.reveledAnswers, answerId],
+      ...playSound(prevState),
     }));
   };
 
@@ -142,8 +163,9 @@ class App extends React.Component {
     const questionIdList = questions.map(q => q.id);
     const lowerBound = Math.floor.apply(null, questionIdList);
     const upperBound = Math.max.apply(null, questionIdList);
+    const playSound = this.changeSoundStatus('theme', Sound.status.PLAYING);
 
-    this.setState(({ usedQuestions }) => {
+    this.setState(({ usedQuestions, sounds }) => {
       let newQuestionId = 0;
       do {
         newQuestionId = randomNumberBetween(lowerBound, upperBound);
@@ -152,25 +174,43 @@ class App extends React.Component {
         currentQuestionId: newQuestionId,
         xCount: 0,
         usedQuestions: [...usedQuestions, newQuestionId],
+        ...playSound({ sounds }),
       };
     });
   };
 
   showX = count => () => {
-    // todo: add sound
-    this.setState({
+    const playSound = this.changeSoundStatus('wrong', Sound.status.PLAYING);
+    this.setState(prevState => ({
       xCount: count,
-    });
+      ...playSound(prevState),
+    }));
+  };
+
+  handleSoundStop = key => () => {
+    const stopSound = this.changeSoundStatus(key, Sound.status.STOPPED);
+    this.setState(prevState => stopSound(prevState));
   };
 
   render() {
-    const { reveledAnswers, teams, currentQuestionId, activeTeamId, xCount } = this.state;
+    const { reveledAnswers, teams, currentQuestionId, activeTeamId, xCount, sounds } = this.state;
     const currentQuestion = questions.find(q => q.id === currentQuestionId);
     return (
       <ThemeProvider theme={gameTheme}>
         <AppContainer>
           <AppBackground />
           <Title render="Family Feud" />
+          {Object.keys(sounds).map(key => {
+            return (
+              <Sound
+                key={key}
+                url={require(`./assets/${key}.mp3`)}
+                playStatus={sounds[key]}
+                volume={100}
+                onFinishedPlaying={this.handleSoundStop(key)}
+              />
+            );
+          })}
           <Gameboard
             xCount={xCount}
             currentQuestion={currentQuestion}
@@ -195,6 +235,7 @@ class App extends React.Component {
               addToActive={this.addScoreToActive}
               showX={this.showX}
             />
+            <Soundboard sounds={sounds} changeSoundStatus={this.soundStatusHandler} />
           </AdminScreen>
         </AppContainer>
       </ThemeProvider>

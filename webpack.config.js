@@ -47,6 +47,13 @@ module.exports = (env = {}) =>
             name: '[name].[ext]',
           },
         },
+        {
+          test: /.(mp3)$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+          },
+        },
       ],
     },
     plugins: [

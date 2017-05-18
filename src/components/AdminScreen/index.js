@@ -1,6 +1,7 @@
 import glamorous from 'glamorous';
 export * from './TeamsCRUD';
 export * from './QuestionAdmin';
+export * from './Soundboard';
 
 const AdminScreen = glamorous.div(
   {
