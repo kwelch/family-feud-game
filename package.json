@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "prebuild": "rimraf dist",
-    "build": "webpack -p --env.production",
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
     "test": "jest",
     "lint": "eslint .",
     "deploy": "gh-pages -d dist -b gh-pages -r https://github.com/kwelch/family-feud-game.git"
@@ -36,6 +36,7 @@
     "babel-preset-env": "^1.2.2",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
     "eslint": "^3.18.0",
     "eslint-loader": "^1.7.0",
