@@ -9,7 +9,11 @@ import classnames from 'classnames';
 import Sound from 'react-sound';
 import Box from './components/Box';
 import Gameboard from './components/Gameboard';
-import AdminScreen, { TeamsCRUD, QuestionAdmin, Soundboard } from './components/AdminScreen';
+import AdminScreen, {
+  TeamsCRUD,
+  QuestionAdmin,
+  Soundboard,
+} from './components/AdminScreen';
 import { sortByProp } from './utils';
 import questions from './questions.json';
 
@@ -17,8 +21,8 @@ const { Div } = glamorous;
 
 const gameTheme = {
   colors: {
-    primary: '#f2621c',
-    accent: '#334f99',
+    primary: '#334f99',
+    accent: '#f2621c',
     backgroundColor: '#fbf152',
   },
   containerBorderSize: 8,
@@ -108,7 +112,9 @@ class App extends React.Component {
 
   addScoreToActive = score => () => {
     this.setState(prevState => ({
-      ...this.replaceTeamInList(prevState)(this.addScoreToActiveTeam(prevState)(score)),
+      ...this.replaceTeamInList(prevState)(
+        this.addScoreToActiveTeam(prevState)(score)
+      ),
     }));
   };
 
@@ -142,7 +148,10 @@ class App extends React.Component {
     this.setState(({ currentQuestionId, reveledAnswers }) => {
       const question = questions.find(q => q.id === currentQuestionId);
       return {
-        reveledAnswers: [...reveledAnswers, ...question.responses.map((_, i) => `${question.id}_${i}`)],
+        reveledAnswers: [
+          ...reveledAnswers,
+          ...question.responses.map((_, i) => `${question.id}_${i}`),
+        ],
       };
     });
   };
@@ -193,7 +202,14 @@ class App extends React.Component {
   };
 
   render() {
-    const { reveledAnswers, teams, currentQuestionId, activeTeamId, xCount, sounds } = this.state;
+    const {
+      reveledAnswers,
+      teams,
+      currentQuestionId,
+      activeTeamId,
+      xCount,
+      sounds,
+    } = this.state;
     const currentQuestion = questions.find(q => q.id === currentQuestionId);
     return (
       <ThemeProvider theme={gameTheme}>
@@ -235,7 +251,10 @@ class App extends React.Component {
               addToActive={this.addScoreToActive}
               showX={this.showX}
             />
-            <Soundboard sounds={sounds} changeSoundStatus={this.soundStatusHandler} />
+            <Soundboard
+              sounds={sounds}
+              changeSoundStatus={this.soundStatusHandler}
+            />
           </AdminScreen>
         </AppContainer>
       </ThemeProvider>

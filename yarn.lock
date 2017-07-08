@@ -2474,9 +2474,9 @@ glamor@^2.20.24:
     object-assign "^4.1.0"
     prop-types "^15.5.8"
 
-glamorous@^3.13.1:
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/glamorous/-/glamorous-3.13.3.tgz#3be82dc77d1678fe0eb81ac81157c16393a3fa44"
+glamorous@beta:
+  version "3.23.2-beta.0"
+  resolved "https://registry.yarnpkg.com/glamorous/-/glamorous-3.23.2-beta.0.tgz#ec312fed386e70f2ff92e1511e779499e2363e3c"
   dependencies:
     brcast "^2.0.0"
     fast-memoize "^2.2.7"

@@ -1,12 +1,20 @@
 {
   "parser": "babel-eslint",
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "env": {
     "jest": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "browser": true
   },
+  "plugins": [
+    "react"
+  ],
   "rules": {
+    "react/prop-types": 0,
     "comma-dangle": [
       "error",
       {

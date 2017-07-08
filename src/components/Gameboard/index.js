@@ -36,22 +36,36 @@ const FadedContainer = glamorous.div({
 });
 
 const BigX = ({ count = 0 }) => {
+  console.log(count); //eslint-disable-line no-console
   return (
     <FadedContainer>
-      {Array.from({ length: count }).map((_, i) => <XContainer key={i}>X</XContainer>)}
+      {Array.from({ length: count }).map((_, i) => (
+        <XContainer key={i}>X</XContainer>
+      ))}
     </FadedContainer>
   );
 };
 
-export default ({ xCount, currentQuestion, reveledAnswers, activeTeamId, teams, revelAnswer }) => {
+export default function Gameboard({
+  xCount,
+  currentQuestion,
+  reveledAnswers,
+  activeTeamId,
+  teams,
+  revelAnswer,
+}) {
   return (
     <GameContainer>
       <Div display="flex" flexDirection="column" flexGrow={1}>
         <Header style={{ textAlign: 'center' }}>Family Feud</Header>
         <BigX count={xCount} />
-        <Questionboard question={currentQuestion} reveledAnswers={reveledAnswers} answerClick={revelAnswer} />
+        <Questionboard
+          question={currentQuestion}
+          reveledAnswers={reveledAnswers}
+          answerClick={revelAnswer}
+        />
       </Div>
       <Scoreboard teams={teams.slice()} activeTeamId={activeTeamId} />
     </GameContainer>
   );
-};
+}
