@@ -10,7 +10,7 @@
     "stage-2"
   ],
   "plugins": [
-    "captains-log",
+    ["captains-log", {"injectScope": false}],
     "react-hot-loader/babel"
   ]
 }
