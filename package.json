@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "babel-plugin-captains-log": "^0.6.0",
+    "cache-loader": "^1.0.3",
     "classnames": "^2.2.5",
     "glamor": "^2.20.24",
     "glamorous": "^3.23.2-beta.0",

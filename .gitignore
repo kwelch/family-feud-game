@@ -3,3 +3,4 @@
 node_modules/
 ##nuget
 packages/
+.cache-loader/
